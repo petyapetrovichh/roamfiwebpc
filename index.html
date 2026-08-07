@@ -28,9 +28,6 @@
 </script>
 <style>
   body { font-family: 'Noto Sans', ui-sans-serif, system-ui, sans-serif; }
-  .rf-wrap { max-width: 1536px; margin: 0 auto; padding-left: 2rem; padding-right: 2rem; }
-  @media (max-width: 767px){ .rf-wrap{ padding-left:1.25rem; padding-right:1.25rem; } }
-
   .btn { position: relative; overflow: hidden; cursor: pointer; border: none; background: none;
          font: inherit; color: inherit; transition: opacity .2s ease, background-color .2s ease, border-color .2s ease, color .2s ease; }
   .flex-center { display: flex; align-items: center; justify-content: center; }
@@ -198,7 +195,8 @@
 
     <!-- ============ HERO ============ -->
     <div class="w-full h-[662px] bg-primary relative overflow-hidden">
-      <div class="pt-[110px] h-full rf-wrap text-white flex flex-col relative">
+      <div style="max-width:1536px;margin:0 auto;padding:0 32px;height:100%;">
+      <div class="pt-[110px] h-full text-white flex flex-col relative">
         <img alt="bg" width="610" height="610" class="md:absolute md:right-0 md:bottom-0" src="https://bres.talex.world/static/25d29ab1-7c02-47ac-beaf-bfdb82f50d29.png">
         <div>
           <div class="font-medium text-[48px]">One global eSIM.</div>
@@ -224,9 +222,11 @@
           </button>
         </div>
       </div>
+      </div>
     </div>
 
-    <div class="py-[100px] md:py-[200px] rf-wrap flex flex-col gap-y-[100px] md:gap-y-[200px]">
+    <div style="max-width:1536px;margin:0 auto;padding:0 32px;">
+    <div class="py-[100px] md:py-[200px] flex flex-col gap-y-[100px] md:gap-y-[200px]">
 
       <!-- ============ DESTINATIONS ============ -->
       <section class="flex flex-col items-center gap-y-[70px]">
@@ -356,11 +356,13 @@
       </div>
 
     </div>
+    </div>
   </main>
 
   <!-- ============ FOOTER ============ -->
   <footer class="mt-auto bg-primary py-20">
-    <div class="rf-wrap text-font-secondary flex flex-col gap-y-10" style="color:#9AA0A6">
+    <div style="max-width:1536px;margin:0 auto;padding:0 32px;">
+    <div class="text-font-secondary flex flex-col gap-y-10" style="color:#9AA0A6">
       <div class="flex">
         <div class="flex-[1_0_0]"><svg class="w-[100px] h-[22px] text-white"><use href="#navi-logo"></use></svg></div>
         <div class="flex-[2_0_0] flex gap-x-[118px]">
@@ -412,6 +414,7 @@
           <button class="btn"><svg class="size-5"><use href="#navi-linkin"></use></svg></button>
         </div>
       </div>
+    </div>
     </div>
   </footer>
 
