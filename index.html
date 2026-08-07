@@ -49,6 +49,18 @@
   .btn-error { background:#F64658; color:#fff; }
   .btn-error:hover { opacity:.85; }
 
+  .pill { display:inline-block; background:#0C1214; color:#fff; font-weight:700; font-size:14px; padding:12px 22px; border-radius:9999px; white-space:nowrap; }
+  .pill-teal { display:inline-block; border:1.5px solid #05E3F7; color:#0C1214; font-weight:700; font-size:14px; padding:10px 18px; border-radius:16px; background:rgba(5,227,247,.06); text-align:center; }
+  .caption { color:#9AA0A6; font-size:13px; text-align:center; line-height:1.4; }
+  .diagram-card { background:#fff; border:1px solid #4F596429; border-radius:24px; padding:48px 40px; }
+  .chip { display:inline-flex; align-items:center; padding:8px 16px; border-radius:9999px; font-size:13px; font-weight:700; border:1px solid #4F596429; color:#5D6164; cursor:pointer; background:transparent; }
+  .chip.active { background:#0C1214; color:#fff; border-color:#0C1214; }
+  .sim-btn { padding:14px 0; border-radius:12px; border:1.5px solid #4F596429; text-align:center; font-weight:700; font-size:14px; cursor:pointer; background:#fff; color:#0C1214; }
+  .sim-btn.active { border-color:#05E3F7; background:rgba(5,227,247,.08); }
+  .stat-card { background:#F4F5F6; border-radius:16px; padding:24px; text-align:center; }
+  .bar-track { flex:1; height:10px; border-radius:9999px; background:#F4F5F6; overflow:hidden; }
+  .bar-fill { height:100%; border-radius:9999px; background:#05E3F7; }
+
   .link-secondary { color: inherit; }
   .link-secondary:hover { color: #fff; text-decoration: underline; }
 
@@ -394,46 +406,38 @@
       <!-- ============ DIAGRAM A: HOW MONEY FLOW ============ -->
       <div class="flex flex-col gap-y-6">
         <span class="font-bold text-[22px] text-center">How money flows</span>
-        <div class="diagram-card flex flex-col items-center gap-y-3">
+        <div class="diagram-card">
+          <svg width="100%" viewBox="0 0 720 345" role="img">
+            <title>How RoamFi eSIM revenue splits between the company and the revenue sharing pool</title>
+            <desc>eSIM purchase price splits into provider cost and RoamFi business revenue. Business revenue then splits 50/50 between RoamFi company revenue and the revenue sharing pool.</desc>
 
-          <span class="pill">eSIM purchase price</span>
-          <span class="caption">Amount users pay for eSIM</span>
+            <path d="M360,88 C360,112 185,112 185,138" fill="none" stroke="#B4BABF" stroke-width="2"/>
+            <path d="M360,88 C360,112 505,112 505,138" fill="none" stroke="#B4BABF" stroke-width="2"/>
+            <path d="M505,212 C505,232 425,232 425,248" fill="none" stroke="#B4BABF" stroke-width="2"/>
+            <path d="M505,212 C505,232 605,232 605,248" fill="none" stroke="#B4BABF" stroke-width="2"/>
+            <text x="452" y="230" font-size="12" font-weight="700" fill="#5D6164" text-anchor="middle">50%</text>
+            <text x="558" y="230" font-size="12" font-weight="700" fill="#5D6164" text-anchor="middle">50%</text>
 
-          <div class="w-full flex justify-center gap-x-[220px] mt-3">
-            <svg class="size-5 text-font-tertiary"><use href="#common-dropdown"></use></svg>
-            <svg class="size-5 text-font-tertiary"><use href="#common-dropdown"></use></svg>
-          </div>
+            <rect x="240" y="24" width="240" height="64" rx="18" fill="#0C1214"/>
+            <text x="360" y="48" font-size="15" font-weight="700" fill="#fff" text-anchor="middle" dominant-baseline="central">eSIM purchase price</text>
+            <text x="360" y="70" font-size="12" fill="#C7CBCF" text-anchor="middle" dominant-baseline="central">Amount users pay for eSIM</text>
 
-          <div class="w-full flex justify-center gap-x-16 mt-1">
-            <div class="flex flex-col items-center gap-y-2" style="width:230px">
-              <span class="pill">eSIM provider cost</span>
-              <span class="caption">Cost price of eSIM</span>
-            </div>
-            <div class="flex flex-col items-center gap-y-3" style="width:320px">
-              <span class="pill">RoamFi business revenue</span>
-              <span class="caption">eSIM price minus provider cost = net revenue</span>
+            <rect x="70" y="138" width="230" height="72" rx="18" fill="#F4F5F6"/>
+            <text x="185" y="165" font-size="15" font-weight="700" fill="#0C1214" text-anchor="middle" dominant-baseline="central">eSIM provider cost</text>
+            <text x="185" y="188" font-size="12" fill="#9AA0A6" text-anchor="middle" dominant-baseline="central">Cost price of eSIM</text>
 
-              <div class="w-full flex justify-center gap-x-[130px] mt-2">
-                <svg class="size-5 text-font-tertiary"><use href="#common-dropdown"></use></svg>
-                <svg class="size-5 text-font-tertiary"><use href="#common-dropdown"></use></svg>
-              </div>
-              <div class="w-full flex justify-center gap-x-[16px]">
-                <span class="caption font-bold" style="color:#0C1214">50%</span>
-                <span class="caption font-bold" style="color:#0C1214">50%</span>
-              </div>
+            <rect x="380" y="138" width="250" height="72" rx="18" fill="#0C1214"/>
+            <text x="505" y="165" font-size="15" font-weight="700" fill="#fff" text-anchor="middle" dominant-baseline="central">RoamFi business revenue</text>
+            <text x="505" y="188" font-size="12" fill="#C7CBCF" text-anchor="middle" dominant-baseline="central">Price minus provider cost</text>
 
-              <div class="flex justify-center gap-x-4 mt-1">
-                <div class="flex flex-col items-center gap-y-2" style="width:140px">
-                  <span class="pill">RoamFi</span>
-                  <span class="caption">Company revenue</span>
-                </div>
-                <div class="flex flex-col items-center gap-y-2" style="width:160px">
-                  <span class="pill-teal">Revenue sharing pool</span>
-                  <span class="caption">All past eSIM buyers share it</span>
-                </div>
-              </div>
-            </div>
-          </div>
+            <rect x="350" y="248" width="150" height="72" rx="18" fill="#0C1214"/>
+            <text x="425" y="275" font-size="15" font-weight="700" fill="#fff" text-anchor="middle" dominant-baseline="central">RoamFi</text>
+            <text x="425" y="298" font-size="12" fill="#C7CBCF" text-anchor="middle" dominant-baseline="central">Company revenue</text>
+
+            <rect x="515" y="248" width="180" height="72" rx="18" fill="#05E3F7"/>
+            <text x="605" y="275" font-size="15" font-weight="700" fill="#0C1214" text-anchor="middle" dominant-baseline="central">Revenue sharing pool</text>
+            <text x="605" y="298" font-size="12" fill="#0C1214" opacity="0.7" text-anchor="middle" dominant-baseline="central">Shared with past buyers</text>
+          </svg>
         </div>
 
         <!-- Example note -->
@@ -455,73 +459,79 @@
       <!-- ============ DIAGRAM B: REVENUE SHARING POOL ============ -->
       <div class="flex flex-col gap-y-6">
         <span class="font-bold text-[22px] text-center">Revenue sharing pool</span>
-        <div class="diagram-card flex flex-col items-center gap-y-4">
-          <div style="max-width:600px;width:100%" class="flex flex-col gap-y-4">
+        <div class="diagram-card">
+          <svg width="100%" viewBox="0 0 860 430" role="img">
+            <title>How the revenue sharing pool is split by recency and paid out over time</title>
+            <desc>50% of RoamFi business revenue funds the revenue sharing pool from purchases by other users after you. The pool splits into four groups by how recently a buyer joined: Pool A 40% in the last 24 hours, Pool B 30% in 1-7 days, Pool C 20% in 8-30 days, Pool D 10% in 31-365 days. A timeline shows your position from day 0, when you buy, to day 365, when your window closes, with your balance growing automatically as other buyers purchase eSIMs after you.</desc>
 
-            <div class="w-full flex justify-between">
-              <span class="font-bold text-[14px]">You buy</span>
-              <span class="font-bold text-[14px]">Day 365</span>
-            </div>
+            <rect x="250" y="20" width="340" height="64" rx="18" fill="#05E3F7"/>
+            <text x="420" y="42" font-size="15" font-weight="700" fill="#0C1214" text-anchor="middle" dominant-baseline="central">50% RoamFi business revenue</text>
+            <text x="420" y="64" font-size="12" fill="#0C1214" opacity="0.7" text-anchor="middle" dominant-baseline="central">From eSIM purchases by other users after you</text>
 
-            <div class="w-full flex justify-between gap-x-3">
-              <div class="flex flex-col items-center gap-y-1" style="flex:1;border:1.5px solid #05E3F7;border-radius:16px;padding:14px 4px;background:rgba(5,227,247,.14)">
-                <span class="font-bold text-[16px]">Pool A</span>
-                <span class="font-bold text-[13px]" style="color:#0C1214">40%</span>
-                <span class="caption">Last 24h</span>
-              </div>
-              <div class="flex flex-col items-center gap-y-1" style="flex:1;border:1.5px solid #05E3F7;border-radius:16px;padding:14px 4px;background:rgba(5,227,247,.10)">
-                <span class="font-bold text-[16px]">Pool B</span>
-                <span class="font-bold text-[13px]" style="color:#0C1214">30%</span>
-                <span class="caption">1-7 days</span>
-              </div>
-              <div class="flex flex-col items-center gap-y-1" style="flex:1;border:1.5px solid #05E3F7;border-radius:16px;padding:14px 4px;background:rgba(5,227,247,.06)">
-                <span class="font-bold text-[16px]">Pool C</span>
-                <span class="font-bold text-[13px]" style="color:#0C1214">20%</span>
-                <span class="caption">8-30 days</span>
-              </div>
-              <div class="flex flex-col items-center gap-y-1" style="flex:1;border:1.5px solid #05E3F7;border-radius:16px;padding:14px 4px;background:rgba(5,227,247,.03)">
-                <span class="font-bold text-[16px]">Pool D</span>
-                <span class="font-bold text-[13px]" style="color:#0C1214">10%</span>
-                <span class="caption">31-365 days</span>
-              </div>
-            </div>
+            <path d="M420,84 C420,108 180,108 180,138" fill="none" stroke="#B4BABF" stroke-width="2"/>
+            <path d="M420,84 C420,108 340,108 340,138" fill="none" stroke="#B4BABF" stroke-width="2"/>
+            <path d="M420,84 C420,108 500,108 500,138" fill="none" stroke="#B4BABF" stroke-width="2"/>
+            <path d="M420,84 C420,108 660,108 660,138" fill="none" stroke="#B4BABF" stroke-width="2"/>
 
-            <div class="w-full relative mt-4" style="height:2px;background:#4F596429">
-              <div style="position:absolute;left:8%;top:-4px;width:10px;height:10px;border-radius:50%;background:#0C1214"></div>
-              <div style="position:absolute;left:38%;top:-4px;width:10px;height:10px;border-radius:50%;background:#0C1214"></div>
-              <div style="position:absolute;left:66%;top:-4px;width:10px;height:10px;border-radius:50%;background:#0C1214"></div>
-              <div style="position:absolute;left:90%;top:-4px;width:10px;height:10px;border-radius:50%;background:#0C1214"></div>
-            </div>
-            <span class="caption">Other buyers worldwide, any time in the window</span>
+            <rect x="110" y="140" width="140" height="80" rx="16" fill="rgba(5,227,247,.16)" stroke="#05E3F7" stroke-width="1.2"/>
+            <rect x="270" y="140" width="140" height="80" rx="16" fill="rgba(5,227,247,.12)" stroke="#05E3F7" stroke-width="1.2"/>
+            <rect x="430" y="140" width="140" height="80" rx="16" fill="rgba(5,227,247,.08)" stroke="#05E3F7" stroke-width="1.2"/>
+            <rect x="590" y="140" width="140" height="80" rx="16" fill="rgba(5,227,247,.04)" stroke="#05E3F7" stroke-width="1.2"/>
 
-            <div class="w-full flex justify-center mt-1">
-              <svg class="size-5 text-font-tertiary"><use href="#common-dropdown"></use></svg>
-            </div>
-            <div class="w-full flex justify-center">
-              <span class="pill-teal" style="width:280px">Your USD balance grows automatically</span>
-            </div>
+            <text x="180" y="158" font-size="11" fill="#9AA0A6" text-anchor="middle">Pool A</text>
+            <text x="180" y="181" font-size="18" font-weight="700" fill="#0C1214" text-anchor="middle">40%</text>
+            <text x="180" y="202" font-size="11" fill="#9AA0A6" text-anchor="middle">Last 24h</text>
 
-            <div class="w-full flex justify-between">
-              <span></span>
-              <span class="font-bold text-[14px]">Window closes</span>
-            </div>
-          </div>
+            <text x="340" y="158" font-size="11" fill="#9AA0A6" text-anchor="middle">Pool B</text>
+            <text x="340" y="181" font-size="18" font-weight="700" fill="#0C1214" text-anchor="middle">30%</text>
+            <text x="340" y="202" font-size="11" fill="#9AA0A6" text-anchor="middle">1-7 days</text>
+
+            <text x="500" y="158" font-size="11" fill="#9AA0A6" text-anchor="middle">Pool C</text>
+            <text x="500" y="181" font-size="18" font-weight="700" fill="#0C1214" text-anchor="middle">20%</text>
+            <text x="500" y="202" font-size="11" fill="#9AA0A6" text-anchor="middle">8-30 days</text>
+
+            <text x="660" y="158" font-size="11" fill="#9AA0A6" text-anchor="middle">Pool D</text>
+            <text x="660" y="181" font-size="18" font-weight="700" fill="#0C1214" text-anchor="middle">10%</text>
+            <text x="660" y="202" font-size="11" fill="#9AA0A6" text-anchor="middle">31-365 days</text>
+
+            <line x1="260" y1="220" x2="260" y2="300" stroke="#C7CBCF" stroke-width="1" stroke-dasharray="4 4"/>
+            <line x1="420" y1="220" x2="420" y2="300" stroke="#C7CBCF" stroke-width="1" stroke-dasharray="4 4"/>
+            <line x1="580" y1="220" x2="580" y2="300" stroke="#C7CBCF" stroke-width="1" stroke-dasharray="4 4"/>
+
+            <line x1="110" y1="270" x2="730" y2="270" stroke="#C7CBCF" stroke-width="1.5"/>
+            <circle cx="110" cy="270" r="6" fill="#05E3F7"/>
+            <circle cx="180" cy="270" r="6" fill="none" stroke="#0C1214" stroke-width="1.4" stroke-dasharray="2.5 2.5"/>
+            <circle cx="340" cy="270" r="6" fill="none" stroke="#0C1214" stroke-width="1.4" stroke-dasharray="2.5 2.5"/>
+            <circle cx="500" cy="270" r="6" fill="none" stroke="#0C1214" stroke-width="1.4" stroke-dasharray="2.5 2.5"/>
+            <circle cx="660" cy="270" r="6" fill="none" stroke="#0C1214" stroke-width="1.4" stroke-dasharray="2.5 2.5"/>
+            <path d="M147,264 L154,270 L147,276" fill="none" stroke="#9AA0A6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M597,264 L604,270 L597,276" fill="none" stroke="#9AA0A6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+
+            <text x="98" y="262" font-size="12" font-weight="700" fill="#0C1214" text-anchor="end">Day 0</text>
+            <text x="98" y="280" font-size="11" fill="#9AA0A6" text-anchor="end">(You buy)</text>
+            <text x="742" y="262" font-size="12" font-weight="700" fill="#0C1214" text-anchor="start">Day 365</text>
+            <text x="742" y="280" font-size="11" fill="#9AA0A6" text-anchor="start">(Window closes)</text>
+
+            <text x="420" y="330" font-size="12" fill="#9AA0A6" text-anchor="middle">Your position shifts based on time when other user purchased eSIM after you</text>
+
+            <path d="M420,340 L420,358" fill="none" stroke="#B4BABF" stroke-width="2"/>
+
+            <rect x="270" y="360" width="300" height="50" rx="25" fill="#05E3F7"/>
+            <text x="420" y="385" font-size="14" font-weight="700" fill="#0C1214" text-anchor="middle" dominant-baseline="central">Your USD balance grows automatically</text>
+          </svg>
         </div>
 
-        <div class="flex flex-col gap-y-2 pl-2">
-          <span class="text-[14px] text-font-secondary leading-[22px]">— Every eSIM purchase you make becomes a spot in the revenue sharing pool with a certain weight.</span>
-          <span class="text-[14px] text-font-secondary leading-[22px]">— Users who purchase eSIMs and generate business revenue for RoamFi after you keep topping up the revenue sharing pool, and your USD earnings are distributed from it in an automatic real-time settlement.</span>
-          <span class="text-[14px] text-font-secondary leading-[22px]">— Users in the same pool share USD earnings proportionally to their eSIM purchase amount.</span>
-        </div>
       </div>
 
       <!-- ============ BUSINESS PROGRESS OVERVIEW ============ -->
       <div class="flex flex-col gap-y-6">
         <span class="font-bold text-[22px]">Business progress overview</span>
-        <div class="grid grid-cols-3 gap-4">
-          <div class="stat-card"><div class="font-bold text-[28px]">$26.3K</div><div class="caption mt-1">Total pool</div></div>
-          <div class="stat-card"><div class="font-bold text-[28px]">12.5K</div><div class="caption mt-1">eSIM buyers</div></div>
-          <div class="stat-card"><div class="font-bold text-[28px]">85.7K</div><div class="caption mt-1">eSIMs purchased</div></div>
+        <div class="diagram-card" style="padding:36px 40px">
+          <div class="grid grid-cols-3 gap-4">
+            <div class="stat-card"><div class="font-bold text-[28px]">$26.3K</div><div class="caption mt-1">Total pool</div></div>
+            <div class="stat-card"><div class="font-bold text-[28px]">12.5K</div><div class="caption mt-1">eSIM buyers</div></div>
+            <div class="stat-card"><div class="font-bold text-[28px]">85.7K</div><div class="caption mt-1">eSIMs purchased</div></div>
+          </div>
         </div>
       </div>
 
@@ -530,22 +540,22 @@
         <span class="font-bold text-[22px]">Current revenue sharing pool</span>
         <div class="diagram-card flex flex-col gap-y-5" style="padding:36px 40px">
           <div class="flex items-center gap-x-4">
-            <span class="font-bold text-[14px]" style="width:40px">40%</span>
+            <span class="font-bold text-[14px]" style="width:110px">Pool A (40%)</span>
             <div class="bar-track"><div class="bar-fill" style="width:6%"></div></div>
             <span class="font-bold text-[14px]" style="width:60px;text-align:right">$18</span>
           </div>
           <div class="flex items-center gap-x-4">
-            <span class="font-bold text-[14px]" style="width:40px">30%</span>
+            <span class="font-bold text-[14px]" style="width:110px">Pool B (30%)</span>
             <div class="bar-track"><div class="bar-fill" style="width:14%"></div></div>
             <span class="font-bold text-[14px]" style="width:60px;text-align:right">$210</span>
           </div>
           <div class="flex items-center gap-x-4">
-            <span class="font-bold text-[14px]" style="width:40px">20%</span>
+            <span class="font-bold text-[14px]" style="width:110px">Pool C (20%)</span>
             <div class="bar-track"><div class="bar-fill" style="width:48%"></div></div>
             <span class="font-bold text-[14px]" style="width:60px;text-align:right">$1.4K</span>
           </div>
           <div class="flex items-center gap-x-4">
-            <span class="font-bold text-[14px]" style="width:40px">10%</span>
+            <span class="font-bold text-[14px]" style="width:110px">Pool D (10%)</span>
             <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
             <span class="font-bold text-[14px]" style="width:60px;text-align:right">$6.8K</span>
           </div>
@@ -578,8 +588,7 @@
               <div class="sim-btn" data-val="1000000">$1M</div>
             </div>
           </div>
-          <button class="btn btn-primary w-full h-[52px] rounded-full font-bold" onclick="simulateEarnings()">Simulate my earnings</button>
-          <div id="sim-result" class="text-center text-[15px] text-font-secondary" style="display:none"></div>
+          <button class="btn btn-primary w-full h-[52px] rounded-full font-bold">Simulate my earnings</button>
         </div>
       </div>
 
@@ -603,10 +612,12 @@
       <!-- ============ MY STATS ============ -->
       <div class="flex flex-col gap-y-6">
         <span class="font-bold text-[22px]">My stats</span>
-        <div class="grid grid-cols-3 gap-4">
-          <div class="stat-card"><div class="font-bold text-[28px]">$0</div><div class="caption mt-1">Total earned</div></div>
-          <div class="stat-card"><div class="font-bold text-[28px]">0%</div><div class="caption mt-1">Current weight</div></div>
-          <div class="stat-card"><div class="font-bold text-[28px]">0</div><div class="caption mt-1">Eligible purchases</div></div>
+        <div class="diagram-card" style="padding:36px 40px">
+          <div class="grid grid-cols-3 gap-4">
+            <div class="stat-card"><div class="font-bold text-[28px]">$0</div><div class="caption mt-1">Total earned</div></div>
+            <div class="stat-card"><div class="font-bold text-[28px]">0%</div><div class="caption mt-1">Current weight</div></div>
+            <div class="stat-card"><div class="font-bold text-[28px]">0</div><div class="caption mt-1">Eligible eSIM purchases</div></div>
+          </div>
         </div>
       </div>
 
@@ -624,31 +635,31 @@
           <div class="flex items-center gap-x-4">
             <span class="font-bold text-[14px]" style="width:20px">1</span>
             <div class="size-[44px] rounded-full flex-center" style="background:#0C1214;color:#fff;font-weight:700;font-size:13px">ML</div>
-            <div class="flex-1"><div class="font-bold text-[14px]">Marcus L.</div><div class="caption" style="text-align:left">445 eligible purchases · 6.07% current weight</div></div>
+            <div class="flex-1"><div class="font-bold text-[14px]">Marcus L.</div><div class="caption" style="text-align:left">445 eligible eSIM purchases · 6.07% current weight</div></div>
             <span class="font-bold text-[14px]" style="color:#0F6E56">+$1,950</span>
           </div>
           <div class="flex items-center gap-x-4">
             <span class="font-bold text-[14px]" style="width:20px">2</span>
             <div class="size-[44px] rounded-full flex-center" style="background:#0C1214;color:#fff;font-weight:700;font-size:13px">JP</div>
-            <div class="flex-1"><div class="font-bold text-[14px]">Jay Patel</div><div class="caption" style="text-align:left">856 eligible purchases · 1.18% current weight</div></div>
+            <div class="flex-1"><div class="font-bold text-[14px]">Jay Patel</div><div class="caption" style="text-align:left">856 eligible eSIM purchases · 1.18% current weight</div></div>
             <span class="font-bold text-[14px]" style="color:#0F6E56">+$960</span>
           </div>
           <div class="flex items-center gap-x-4">
             <span class="font-bold text-[14px]" style="width:20px">3</span>
             <div class="size-[44px] rounded-full flex-center" style="background:#0C1214;color:#fff;font-weight:700;font-size:13px">SM</div>
-            <div class="flex-1"><div class="font-bold text-[14px]">Sasha M.</div><div class="caption" style="text-align:left">213 eligible purchases · 3.75% current weight</div></div>
+            <div class="flex-1"><div class="font-bold text-[14px]">Sasha M.</div><div class="caption" style="text-align:left">213 eligible eSIM purchases · 3.75% current weight</div></div>
             <span class="font-bold text-[14px]" style="color:#0F6E56">+$687</span>
           </div>
           <div class="flex items-center gap-x-4">
             <span class="font-bold text-[14px]" style="width:20px">4</span>
             <div class="size-[44px] rounded-full flex-center" style="background:#0C1214;color:#fff;font-weight:700;font-size:13px">AK</div>
-            <div class="flex-1"><div class="font-bold text-[14px]">Aria Khan</div><div class="caption" style="text-align:left">260 eligible purchases · 5.22% current weight</div></div>
+            <div class="flex-1"><div class="font-bold text-[14px]">Aria Khan</div><div class="caption" style="text-align:left">260 eligible eSIM purchases · 5.22% current weight</div></div>
             <span class="font-bold text-[14px]" style="color:#0F6E56">+$400</span>
           </div>
           <div class="flex items-center gap-x-4">
             <span class="font-bold text-[14px]" style="width:20px">5</span>
             <div class="size-[44px] rounded-full flex-center" style="background:#0C1214;color:#fff;font-weight:700;font-size:13px">KN</div>
-            <div class="flex-1"><div class="font-bold text-[14px]">Kai N.</div><div class="caption" style="text-align:left">178 eligible purchases · 2.43% current weight</div></div>
+            <div class="flex-1"><div class="font-bold text-[14px]">Kai N.</div><div class="caption" style="text-align:left">178 eligible eSIM purchases · 2.43% current weight</div></div>
             <span class="font-bold text-[14px]" style="color:#0F6E56">+$120</span>
           </div>
         </div>
@@ -798,17 +809,6 @@
       document.querySelectorAll('#sim-revenue .sim-btn').forEach(x => x.classList.remove('active'));
       b.classList.add('active');
     }));
-    function simulateEarnings() {
-      const amount = parseFloat(document.querySelector('#sim-amount .sim-btn.active').dataset.val);
-      const revenue = parseFloat(document.querySelector('#sim-revenue .sim-btn.active').dataset.val);
-      const poolShare = revenue * 0.5;
-      const tierShare = poolShare * 0.4;
-      const assumedPoolSize = 2000;
-      const estimate = tierShare * (amount / (amount + assumedPoolSize));
-      const el = document.getElementById('sim-result');
-      el.style.display = 'block';
-      el.innerHTML = 'Estimated daily earnings while in the top tier: <span style="color:#0C1214;font-weight:700">$' + estimate.toFixed(2) + '</span><br><span style="font-size:12px">Illustrative example — assumes you stay in the highest-weight pool</span>';
-    }
   </script>
 
 </div>
