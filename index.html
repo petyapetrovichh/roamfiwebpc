@@ -403,7 +403,133 @@
         <span class="text-[18px] text-font-tertiary text-center">Get up to 50% of business revenue from every eSIM purchase</span>
       </div>
 
+      <!-- ============ EXPLANATION TABS ============ -->
+      <div class="flex justify-center gap-x-4">
+        <button id="tab-simple" onclick="showExplanation('simple')" class="btn btn-brand flex-center font-bold text-[15px] h-[52px] rounded-full" style="width:220px">Simple explanation</button>
+        <button id="tab-detailed" onclick="showExplanation('detailed')" class="btn flex-center font-bold text-[15px] h-[52px] rounded-full" style="width:220px;background:#0C1214;color:#fff">Detailed explanation</button>
+      </div>
+
+      <div id="rs-simple" class="flex flex-col gap-y-[90px]">
+
       <!-- ============ DIAGRAM A: HOW MONEY FLOW ============ -->
+      <div class="flex flex-col gap-y-6">
+        <span class="font-bold text-[22px] text-center">How money flows</span>
+        <div class="diagram-card flex flex-col gap-y-10">
+          <div class="flex flex-col gap-y-3">
+            <span class="font-bold text-[17px]">You purchased eSIM</span>
+            <svg width="100%" viewBox="0 0 960 430" role="img">
+            <title>You purchase an eSIM and past buyers earn from it</title>
+            <desc>Your purchase splits into provider cost and RoamFi business revenue, which splits 50/50 into RoamFi's revenue and the revenue sharing pool. The pool pays out to people who bought RoamFi eSIMs before you, at different times in the past.</desc>
+
+            <path d="M76,144 C110,144 110,94 150,94" fill="none" stroke="#B4BABF" stroke-width="2"/>
+            <path d="M76,144 C110,144 110,194 150,194" fill="none" stroke="#B4BABF" stroke-width="2"/>
+            <path d="M410,194 C440,194 440,158 460,158" fill="none" stroke="#B4BABF" stroke-width="2"/>
+            <path d="M410,194 C440,194 440,242 460,242" fill="none" stroke="#B4BABF" stroke-width="2"/>
+            <text x="427" y="158" font-size="13" font-weight="700" fill="#5D6164" text-anchor="middle">50%</text>
+            <text x="453" y="201" font-size="13" font-weight="700" fill="#5D6164" text-anchor="middle">50%</text>
+            <path d="M700,242 C740,242 740,55 774,55" fill="none" stroke="#B4BABF" stroke-width="1.5"/>
+            <path d="M700,242 C740,242 740,165 774,165" fill="none" stroke="#B4BABF" stroke-width="1.5"/>
+            <path d="M700,242 C740,242 740,275 774,275" fill="none" stroke="#B4BABF" stroke-width="1.5"/>
+            <path d="M700,242 C740,242 740,385 774,385" fill="none" stroke="#B4BABF" stroke-width="1.5"/>
+
+            <rect x="150" y="60" width="210" height="68" rx="18" fill="#F4F5F6"/>
+            <text x="255" y="86" font-size="16" font-weight="700" fill="#0C1214" text-anchor="middle" dominant-baseline="central">eSIM provider cost</text>
+            <text x="255" y="108" font-size="12" fill="#9AA0A6" text-anchor="middle" dominant-baseline="central">Cost price of eSIM</text>
+
+            <rect x="150" y="160" width="260" height="68" rx="18" fill="#0C1214"/>
+            <text x="280" y="186" font-size="16" font-weight="700" fill="#fff" text-anchor="middle" dominant-baseline="central">RoamFi business revenue</text>
+            <text x="280" y="208" font-size="12" fill="#C7CBCF" text-anchor="middle" dominant-baseline="central">Price minus provider cost</text>
+
+            <rect x="460" y="126" width="170" height="64" rx="18" fill="#0C1214"/>
+            <text x="545" y="150" font-size="16" font-weight="700" fill="#fff" text-anchor="middle" dominant-baseline="central">RoamFi</text>
+            <text x="545" y="172" font-size="12" fill="#C7CBCF" text-anchor="middle" dominant-baseline="central">Company revenue</text>
+
+            <rect x="460" y="210" width="240" height="64" rx="18" fill="#05E3F7"/>
+            <text x="580" y="234" font-size="16" font-weight="700" fill="#0C1214" text-anchor="middle" dominant-baseline="central">Revenue sharing pool</text>
+            <text x="580" y="256" font-size="12" fill="#0C1214" opacity="0.7" text-anchor="middle" dominant-baseline="central">Shared with past buyers</text>
+
+            <g transform="translate(44,128) scale(1.6)"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" fill="#05E3F7"/></g>
+            <text x="60" y="184" font-size="13" font-weight="700" fill="#0C1214" text-anchor="middle">You</text>
+            <g transform="translate(774,39) scale(1.6)"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" fill="#B4BABF"/></g>
+            <text x="820" y="60" font-size="13" fill="#5D6164" text-anchor="start">1 hour ago</text>
+            <g transform="translate(774,149) scale(1.6)"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" fill="#B4BABF"/></g>
+            <text x="820" y="170" font-size="13" fill="#5D6164" text-anchor="start">5 days ago</text>
+            <g transform="translate(774,259) scale(1.6)"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" fill="#B4BABF"/></g>
+            <text x="820" y="280" font-size="13" fill="#5D6164" text-anchor="start">24 days ago</text>
+            <g transform="translate(774,369) scale(1.6)"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" fill="#B4BABF"/></g>
+            <text x="820" y="390" font-size="13" fill="#5D6164" text-anchor="start">307 days ago</text>
+            <text x="820" y="16" font-size="12" font-weight="700" fill="#9AA0A6" text-anchor="start">Bought RoamFi eSIM</text>
+          </svg>
+          </div>
+          <div class="w-full" style="height:1px;background:#4F596429"></div>
+          <div class="flex flex-col gap-y-3">
+            <span class="font-bold text-[17px]">Someone purchased eSIM after you</span>
+            <svg width="100%" viewBox="0 0 960 430" role="img">
+            <title>Someone else purchases an eSIM after you, and you earn from it</title>
+            <desc>Someone else's purchase splits the same way. This time you are one of the past buyers, so you receive a share of the revenue sharing pool.</desc>
+
+            <path d="M76,144 C110,144 110,94 150,94" fill="none" stroke="#B4BABF" stroke-width="2"/>
+            <path d="M76,144 C110,144 110,194 150,194" fill="none" stroke="#B4BABF" stroke-width="2"/>
+            <path d="M410,194 C440,194 440,158 460,158" fill="none" stroke="#B4BABF" stroke-width="2"/>
+            <path d="M410,194 C440,194 440,242 460,242" fill="none" stroke="#B4BABF" stroke-width="2"/>
+            <text x="427" y="158" font-size="13" font-weight="700" fill="#5D6164" text-anchor="middle">50%</text>
+            <text x="453" y="201" font-size="13" font-weight="700" fill="#5D6164" text-anchor="middle">50%</text>
+            <path d="M700,242 C740,242 740,55 774,55" fill="none" stroke="#B4BABF" stroke-width="1.5"/>
+            <path d="M700,242 C740,242 740,165 774,165" fill="none" stroke="#B4BABF" stroke-width="1.5"/>
+            <path d="M700,242 C740,242 740,275 774,275" fill="none" stroke="#B4BABF" stroke-width="1.5"/>
+            <path d="M700,242 C740,242 740,385 774,385" fill="none" stroke="#B4BABF" stroke-width="1.5"/>
+
+            <rect x="150" y="60" width="210" height="68" rx="18" fill="#F4F5F6"/>
+            <text x="255" y="86" font-size="16" font-weight="700" fill="#0C1214" text-anchor="middle" dominant-baseline="central">eSIM provider cost</text>
+            <text x="255" y="108" font-size="12" fill="#9AA0A6" text-anchor="middle" dominant-baseline="central">Cost price of eSIM</text>
+
+            <rect x="150" y="160" width="260" height="68" rx="18" fill="#0C1214"/>
+            <text x="280" y="186" font-size="16" font-weight="700" fill="#fff" text-anchor="middle" dominant-baseline="central">RoamFi business revenue</text>
+            <text x="280" y="208" font-size="12" fill="#C7CBCF" text-anchor="middle" dominant-baseline="central">Price minus provider cost</text>
+
+            <rect x="460" y="126" width="170" height="64" rx="18" fill="#0C1214"/>
+            <text x="545" y="150" font-size="16" font-weight="700" fill="#fff" text-anchor="middle" dominant-baseline="central">RoamFi</text>
+            <text x="545" y="172" font-size="12" fill="#C7CBCF" text-anchor="middle" dominant-baseline="central">Company revenue</text>
+
+            <rect x="460" y="210" width="240" height="64" rx="18" fill="#05E3F7"/>
+            <text x="580" y="234" font-size="16" font-weight="700" fill="#0C1214" text-anchor="middle" dominant-baseline="central">Revenue sharing pool</text>
+            <text x="580" y="256" font-size="12" fill="#0C1214" opacity="0.7" text-anchor="middle" dominant-baseline="central">Shared with past buyers</text>
+
+            <g transform="translate(44,128) scale(1.6)"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" fill="#B4BABF"/></g>
+            <g transform="translate(774,39) scale(1.6)"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" fill="#B4BABF"/></g>
+            <text x="820" y="60" font-size="13" fill="#5D6164" text-anchor="start">1 hour ago</text>
+            <g transform="translate(774,149) scale(1.6)"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" fill="#05E3F7"/></g>
+            <text x="820" y="170" font-size="13" fill="#5D6164" text-anchor="start">5 days ago</text>
+            <text x="790" y="205" font-size="13" font-weight="700" fill="#0C1214" text-anchor="middle">You</text>
+            <g transform="translate(774,259) scale(1.6)"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" fill="#B4BABF"/></g>
+            <text x="820" y="280" font-size="13" fill="#5D6164" text-anchor="start">24 days ago</text>
+            <g transform="translate(774,369) scale(1.6)"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" fill="#B4BABF"/></g>
+            <text x="820" y="390" font-size="13" fill="#5D6164" text-anchor="start">307 days ago</text>
+            <text x="820" y="16" font-size="12" font-weight="700" fill="#9AA0A6" text-anchor="start">Bought RoamFi eSIM</text>
+          </svg>
+          </div>
+        </div>
+
+        <!-- Example note -->
+        <div class="rounded-[20px] p-8 flex flex-col gap-y-3" style="background:#F4F5F6">
+          <span class="font-bold text-[15px]">Example</span>
+          <span class="text-[14px] text-font-secondary leading-[22px]">John buys a RoamFi eSIM (United States, 10GB / 30 days) for $20.</span>
+          <span class="text-[14px] text-font-secondary leading-[22px]">RoamFi pays the eSIM provider (a local third-party company in the United States) $10 cost price and keeps $10 as business revenue.</span>
+          <span class="text-[14px] text-font-secondary leading-[22px]">RoamFi then keeps $5 as company revenue, while allocating the other $5 to the revenue sharing pool:</span>
+          <div class="flex flex-col gap-y-1 pl-4">
+            <span class="text-[14px] text-font-secondary">— $2 to pool A (40%)</span>
+            <span class="text-[14px] text-font-secondary">— $1.5 to pool B (30%)</span>
+            <span class="text-[14px] text-font-secondary">— $1 to pool C (20%)</span>
+            <span class="text-[14px] text-font-secondary">— $0.5 to pool D (10%)</span>
+          </div>
+          <span class="text-[14px] text-font-secondary leading-[22px]">All users who purchased any RoamFi eSIM before John will get a share of USD from the revenue sharing pools, based on their position among these pools.</span>
+        </div>
+      </div>
+      </div>
+
+      <div id="rs-detailed" class="flex flex-col gap-y-[90px]" style="display:none">
+
+      <!-- ============ DIAGRAM A: HOW MONEY FLOW (DETAILED) ============ -->
       <div class="flex flex-col gap-y-6">
         <span class="font-bold text-[22px] text-center">How money flows</span>
         <div class="diagram-card">
@@ -415,8 +541,8 @@
             <path d="M360,88 C360,112 505,112 505,138" fill="none" stroke="#B4BABF" stroke-width="2"/>
             <path d="M505,212 C505,232 425,232 425,248" fill="none" stroke="#B4BABF" stroke-width="2"/>
             <path d="M505,212 C505,232 605,232 605,248" fill="none" stroke="#B4BABF" stroke-width="2"/>
-            <text x="452" y="230" font-size="12" font-weight="700" fill="#5D6164" text-anchor="middle">50%</text>
-            <text x="558" y="230" font-size="12" font-weight="700" fill="#5D6164" text-anchor="middle">50%</text>
+            <text x="431" y="220" font-size="12" font-weight="700" fill="#5D6164" text-anchor="middle">50%</text>
+            <text x="596" y="220" font-size="12" font-weight="700" fill="#5D6164" text-anchor="middle">50%</text>
 
             <rect x="240" y="24" width="240" height="64" rx="18" fill="#0C1214"/>
             <text x="360" y="48" font-size="15" font-weight="700" fill="#fff" text-anchor="middle" dominant-baseline="central">eSIM purchase price</text>
@@ -719,6 +845,7 @@
           </div>
         </div>
       </div>
+      </div>
 
     </div>
   </main>
@@ -814,6 +941,29 @@
       document.querySelectorAll('#sim-revenue .sim-btn').forEach(x => x.classList.remove('active'));
       b.classList.add('active');
     }));
+
+    function showExplanation(which) {
+      var simple = document.getElementById('rs-simple');
+      var detailed = document.getElementById('rs-detailed');
+      var tabSimple = document.getElementById('tab-simple');
+      var tabDetailed = document.getElementById('tab-detailed');
+      if (which === 'simple') {
+        simple.style.display = '';
+        detailed.style.display = 'none';
+        tabSimple.className = 'btn btn-brand flex-center font-bold text-[15px] h-[52px] rounded-full';
+        tabSimple.style.cssText = 'width:220px';
+        tabDetailed.className = 'btn flex-center font-bold text-[15px] h-[52px] rounded-full';
+        tabDetailed.style.cssText = 'width:220px;background:#0C1214;color:#fff';
+      } else {
+        detailed.style.display = '';
+        simple.style.display = 'none';
+        tabDetailed.className = 'btn btn-brand flex-center font-bold text-[15px] h-[52px] rounded-full';
+        tabDetailed.style.cssText = 'width:220px';
+        tabSimple.className = 'btn flex-center font-bold text-[15px] h-[52px] rounded-full';
+        tabSimple.style.cssText = 'width:220px;background:#0C1214;color:#fff';
+      }
+    }
+    showExplanation('simple');
   </script>
 
 </div>
