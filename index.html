@@ -143,10 +143,10 @@
   <!-- ============ HEADER (desktop) ============ -->
   <header class="z-30 fixed left-0 top-0 right-0 w-full h-[64px] px-8 hidden md:flex flex-row items-center bg-primary">
     <div class="w-full flex flex-row items-center gap-x-[30px]">
-      <svg class="shrink-0 w-[130px] h-[28px] text-white"><use href="#navi-logo"></use></svg>
+      <svg class="shrink-0 w-[130px] h-[28px] text-white cursor-pointer" onclick="showPage('home')"><use href="#navi-logo"></use></svg>
       <div class="w-full flex flex-row items-center gap-x-2 text-white">
         <div class="relative group">
-          <div class="group px-4 flex flex-row items-center gap-x-1 font-bold cursor-pointer">
+          <div class="group px-4 flex flex-row items-center gap-x-1 font-bold cursor-pointer" onclick="showPage('home','destinations')">
             <span>Destinations</span>
             <svg class="size-4 group-hover:rotate-180 transition-transform duration-200"><use href="#common-dropdown"></use></svg>
           </div>
@@ -154,25 +154,25 @@
             <div class="flex flex-col bg-white rounded-[24px] border-[0.5px] border-[#4F596429] overflow-hidden" style="width:520px">
               <div class="h-[60px] font-medium px-8 flex items-end">Popular destinations</div>
               <div class="grid grid-cols-4 gap-2 px-4 py-2">
-                <button class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-us rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>United States</span></button>
-                <button class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-gb rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>United Kingdom</span></button>
-                <button class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-tr rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Turkey</span></button>
-                <button class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-th rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Thailand</span></button>
-                <button class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-es rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Spain</span></button>
-                <button class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-jp rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Japan</span></button>
-                <button class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-de rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Germany</span></button>
-                <button class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-it rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Italy</span></button>
+                <button onclick="showPage('home','destinations')" class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-us rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>United States</span></button>
+                <button onclick="showPage('home','destinations')" class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-gb rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>United Kingdom</span></button>
+                <button onclick="showPage('home','destinations')" class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-tr rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Turkey</span></button>
+                <button onclick="showPage('home','destinations')" class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-th rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Thailand</span></button>
+                <button onclick="showPage('home','destinations')" class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-es rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Spain</span></button>
+                <button onclick="showPage('home','destinations')" class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-jp rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Japan</span></button>
+                <button onclick="showPage('home','destinations')" class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-de rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Germany</span></button>
+                <button onclick="showPage('home','destinations')" class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-it rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Italy</span></button>
               </div>
               <div class="shrink-0 h-[82px] border-t-[#4F596429] border-t-[0.5px] flex items-center justify-center">
-                <button class="btn btn-primary flex-center gap-x-1 font-bold text-[14px] w-[206px] h-[48px] rounded-full"><span>All Destinations</span><svg class="size-[18px]"><use href="#common-arrow"></use></svg></button>
+                <button onclick="showPage('home','destinations')" class="btn btn-primary flex-center gap-x-1 font-bold text-[14px] w-[206px] h-[48px] rounded-full"><span>All Destinations</span><svg class="size-[18px]"><use href="#common-arrow"></use></svg></button>
               </div>
             </div>
           </div>
         </div>
-        <div class="group px-4 flex flex-row items-center gap-x-1 opacity-50 hover:opacity-100 transition-opacity duration-200 cursor-pointer">
+        <div onclick="showPage('revenue-sharing')" class="group px-4 flex flex-row items-center gap-x-1 opacity-50 hover:opacity-100 transition-opacity duration-200 cursor-pointer">
           <span>Revenue Sharing</span>
         </div>
-        <div class="group px-4 flex flex-row items-center gap-x-1 opacity-50 hover:opacity-100 transition-opacity duration-200 cursor-pointer">
+        <div onclick="showPage('home','faq')" class="group px-4 flex flex-row items-center gap-x-1 opacity-50 hover:opacity-100 transition-opacity duration-200 cursor-pointer">
           <span>FAQ</span>
         </div>
         <div class="group px-4 flex flex-row items-center gap-x-1 opacity-50 hover:opacity-100 transition-opacity duration-200 cursor-pointer">
@@ -209,7 +209,7 @@
     </div>
   </div>
 
-  <main>
+  <main id="page-home" class="page">
 
     <!-- ============ HERO ============ -->
     <div class="w-full h-[662px] bg-primary relative overflow-hidden">
@@ -246,7 +246,7 @@
     <div class="py-[100px] md:py-[200px] flex flex-col gap-y-[100px] md:gap-y-[200px]">
 
       <!-- ============ DESTINATIONS ============ -->
-      <section class="flex flex-col items-center gap-y-[70px]">
+      <section id="destinations" class="flex flex-col items-center gap-y-[70px]">
         <div class="flex flex-col gap-y-[18px]">
           <span class="font-medium text-center text-[40px]">One global eSIM for 200+ destinations</span>
           <span class="text-center text-[20px] text-font-tertiary">Change countries, not eSIMs or plans. RoamFi switches between countries and networks automatically.</span>
@@ -269,7 +269,7 @@
           <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-ua rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Ukraine</span></button>
           <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-sg rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Singapore</span></button>
         </div>
-        <button class="btn btn-primary flex-center gap-x-1 font-bold text-[14px] w-[206px] h-[48px] rounded-full"><span>All Destinations</span><svg class="size-[18px]"><use href="#common-arrow"></use></svg></button>
+        <button onclick="showPage('home','destinations')" class="btn btn-primary flex-center gap-x-1 font-bold text-[14px] w-[206px] h-[48px] rounded-full"><span>All Destinations</span><svg class="size-[18px]"><use href="#common-arrow"></use></svg></button>
       </section>
 
       <!-- ============ WHY CHOOSE ============ -->
@@ -348,11 +348,11 @@
             </div>
           </div>
         </div>
-        <button class="btn btn-brand flex-center gap-x-1 font-bold text-[14px] w-[160px] h-[48px] rounded-full"><span>Learn more</span><svg class="size-[18px]"><use href="#common-arrow"></use></svg></button>
+        <button onclick="showPage('revenue-sharing')" class="btn btn-brand flex-center gap-x-1 font-bold text-[14px] w-[160px] h-[48px] rounded-full"><span>Learn more</span><svg class="size-[18px]"><use href="#common-arrow"></use></svg></button>
       </div>
 
       <!-- ============ FAQ PREVIEW (GEO) ============ -->
-      <div class="flex flex-col gap-y-[50px]">
+      <div id="faq" class="flex flex-col gap-y-[50px]">
         <div class="flex flex-col items-center gap-y-[18px]">
           <span class="font-medium text-[46px]">Frequently Asked Questions</span>
           <span class="text-[20px] text-font-tertiary text-center">Quick answers about eSIMs, coverage, and how revenue sharing works</span>
@@ -379,6 +379,331 @@
       </div>
 
     </div>
+    </div>
+  </main>
+
+  <main id="page-revenue-sharing" class="page" style="background:#F7F8F9;display:none">
+    <div style="max-width:900px;margin:0 auto;padding:150px 32px 120px;" class="flex flex-col gap-y-[90px]">
+
+      <!-- ============ PAGE HEADER ============ -->
+      <div class="flex flex-col items-center gap-y-4">
+        <span class="font-medium text-[46px] text-center">Revenue Sharing Rules</span>
+        <span class="text-[18px] text-font-tertiary text-center">Get up to 50% of business revenue from every eSIM purchase</span>
+      </div>
+
+      <!-- ============ DIAGRAM A: HOW MONEY FLOW ============ -->
+      <div class="flex flex-col gap-y-6">
+        <span class="font-bold text-[22px] text-center">How money flows</span>
+        <div class="diagram-card flex flex-col items-center gap-y-3">
+
+          <span class="pill">eSIM purchase price</span>
+          <span class="caption">Amount users pay for eSIM</span>
+
+          <div class="w-full flex justify-center gap-x-[220px] mt-3">
+            <svg class="size-5 text-font-tertiary"><use href="#common-dropdown"></use></svg>
+            <svg class="size-5 text-font-tertiary"><use href="#common-dropdown"></use></svg>
+          </div>
+
+          <div class="w-full flex justify-center gap-x-16 mt-1">
+            <div class="flex flex-col items-center gap-y-2" style="width:230px">
+              <span class="pill">eSIM provider cost</span>
+              <span class="caption">Cost price of eSIM</span>
+            </div>
+            <div class="flex flex-col items-center gap-y-3" style="width:320px">
+              <span class="pill">RoamFi business revenue</span>
+              <span class="caption">eSIM price minus provider cost = net revenue</span>
+
+              <div class="w-full flex justify-center gap-x-[130px] mt-2">
+                <svg class="size-5 text-font-tertiary"><use href="#common-dropdown"></use></svg>
+                <svg class="size-5 text-font-tertiary"><use href="#common-dropdown"></use></svg>
+              </div>
+              <div class="w-full flex justify-center gap-x-[16px]">
+                <span class="caption font-bold" style="color:#0C1214">50%</span>
+                <span class="caption font-bold" style="color:#0C1214">50%</span>
+              </div>
+
+              <div class="flex justify-center gap-x-4 mt-1">
+                <div class="flex flex-col items-center gap-y-2" style="width:140px">
+                  <span class="pill">RoamFi</span>
+                  <span class="caption">Company revenue</span>
+                </div>
+                <div class="flex flex-col items-center gap-y-2" style="width:160px">
+                  <span class="pill-teal">Revenue sharing pool</span>
+                  <span class="caption">All past eSIM buyers share it</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Example note -->
+        <div class="rounded-[20px] p-8 flex flex-col gap-y-3" style="background:#F4F5F6">
+          <span class="font-bold text-[15px]">Example</span>
+          <span class="text-[14px] text-font-secondary leading-[22px]">John buys a RoamFi eSIM (United States, 10GB / 30 days) for $20.</span>
+          <span class="text-[14px] text-font-secondary leading-[22px]">RoamFi pays the eSIM provider (a local third-party company in the United States) $10 cost price and keeps $10 as business revenue.</span>
+          <span class="text-[14px] text-font-secondary leading-[22px]">RoamFi then keeps $5 as company revenue, while allocating the other $5 to the revenue sharing pool:</span>
+          <div class="flex flex-col gap-y-1 pl-4">
+            <span class="text-[14px] text-font-secondary">— $2 to pool A (40%)</span>
+            <span class="text-[14px] text-font-secondary">— $1.5 to pool B (30%)</span>
+            <span class="text-[14px] text-font-secondary">— $1 to pool C (20%)</span>
+            <span class="text-[14px] text-font-secondary">— $0.5 to pool D (10%)</span>
+          </div>
+          <span class="text-[14px] text-font-secondary leading-[22px]">All users who purchased any RoamFi eSIM before John will get a share of USD from the revenue sharing pools, based on their position among these pools.</span>
+        </div>
+      </div>
+
+      <!-- ============ DIAGRAM B: REVENUE SHARING POOL ============ -->
+      <div class="flex flex-col gap-y-6">
+        <span class="font-bold text-[22px] text-center">Revenue sharing pool</span>
+        <div class="diagram-card flex flex-col items-center gap-y-4">
+          <div style="max-width:600px;width:100%" class="flex flex-col gap-y-4">
+
+            <div class="w-full flex justify-between">
+              <span class="font-bold text-[14px]">You buy</span>
+              <span class="font-bold text-[14px]">Day 365</span>
+            </div>
+
+            <div class="w-full flex justify-between gap-x-3">
+              <div class="flex flex-col items-center gap-y-1" style="flex:1;border:1.5px solid #05E3F7;border-radius:16px;padding:14px 4px;background:rgba(5,227,247,.14)">
+                <span class="font-bold text-[16px]">Pool A</span>
+                <span class="font-bold text-[13px]" style="color:#0C1214">40%</span>
+                <span class="caption">Last 24h</span>
+              </div>
+              <div class="flex flex-col items-center gap-y-1" style="flex:1;border:1.5px solid #05E3F7;border-radius:16px;padding:14px 4px;background:rgba(5,227,247,.10)">
+                <span class="font-bold text-[16px]">Pool B</span>
+                <span class="font-bold text-[13px]" style="color:#0C1214">30%</span>
+                <span class="caption">1-7 days</span>
+              </div>
+              <div class="flex flex-col items-center gap-y-1" style="flex:1;border:1.5px solid #05E3F7;border-radius:16px;padding:14px 4px;background:rgba(5,227,247,.06)">
+                <span class="font-bold text-[16px]">Pool C</span>
+                <span class="font-bold text-[13px]" style="color:#0C1214">20%</span>
+                <span class="caption">8-30 days</span>
+              </div>
+              <div class="flex flex-col items-center gap-y-1" style="flex:1;border:1.5px solid #05E3F7;border-radius:16px;padding:14px 4px;background:rgba(5,227,247,.03)">
+                <span class="font-bold text-[16px]">Pool D</span>
+                <span class="font-bold text-[13px]" style="color:#0C1214">10%</span>
+                <span class="caption">31-365 days</span>
+              </div>
+            </div>
+
+            <div class="w-full relative mt-4" style="height:2px;background:#4F596429">
+              <div style="position:absolute;left:8%;top:-4px;width:10px;height:10px;border-radius:50%;background:#0C1214"></div>
+              <div style="position:absolute;left:38%;top:-4px;width:10px;height:10px;border-radius:50%;background:#0C1214"></div>
+              <div style="position:absolute;left:66%;top:-4px;width:10px;height:10px;border-radius:50%;background:#0C1214"></div>
+              <div style="position:absolute;left:90%;top:-4px;width:10px;height:10px;border-radius:50%;background:#0C1214"></div>
+            </div>
+            <span class="caption">Other buyers worldwide, any time in the window</span>
+
+            <div class="w-full flex justify-center mt-1">
+              <svg class="size-5 text-font-tertiary"><use href="#common-dropdown"></use></svg>
+            </div>
+            <div class="w-full flex justify-center">
+              <span class="pill-teal" style="width:280px">Your USD balance grows automatically</span>
+            </div>
+
+            <div class="w-full flex justify-between">
+              <span></span>
+              <span class="font-bold text-[14px]">Window closes</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-y-2 pl-2">
+          <span class="text-[14px] text-font-secondary leading-[22px]">— Every eSIM purchase you make becomes a spot in the revenue sharing pool with a certain weight.</span>
+          <span class="text-[14px] text-font-secondary leading-[22px]">— Users who purchase eSIMs and generate business revenue for RoamFi after you keep topping up the revenue sharing pool, and your USD earnings are distributed from it in an automatic real-time settlement.</span>
+          <span class="text-[14px] text-font-secondary leading-[22px]">— Users in the same pool share USD earnings proportionally to their eSIM purchase amount.</span>
+        </div>
+      </div>
+
+      <!-- ============ BUSINESS PROGRESS OVERVIEW ============ -->
+      <div class="flex flex-col gap-y-6">
+        <span class="font-bold text-[22px]">Business progress overview</span>
+        <div class="grid grid-cols-3 gap-4">
+          <div class="stat-card"><div class="font-bold text-[28px]">$26.3K</div><div class="caption mt-1">Total pool</div></div>
+          <div class="stat-card"><div class="font-bold text-[28px]">12.5K</div><div class="caption mt-1">eSIM buyers</div></div>
+          <div class="stat-card"><div class="font-bold text-[28px]">85.7K</div><div class="caption mt-1">eSIMs purchased</div></div>
+        </div>
+      </div>
+
+      <!-- ============ CURRENT REVENUE SHARING POOL ============ -->
+      <div class="flex flex-col gap-y-6">
+        <span class="font-bold text-[22px]">Current revenue sharing pool</span>
+        <div class="diagram-card flex flex-col gap-y-5" style="padding:36px 40px">
+          <div class="flex items-center gap-x-4">
+            <span class="font-bold text-[14px]" style="width:40px">40%</span>
+            <div class="bar-track"><div class="bar-fill" style="width:6%"></div></div>
+            <span class="font-bold text-[14px]" style="width:60px;text-align:right">$18</span>
+          </div>
+          <div class="flex items-center gap-x-4">
+            <span class="font-bold text-[14px]" style="width:40px">30%</span>
+            <div class="bar-track"><div class="bar-fill" style="width:14%"></div></div>
+            <span class="font-bold text-[14px]" style="width:60px;text-align:right">$210</span>
+          </div>
+          <div class="flex items-center gap-x-4">
+            <span class="font-bold text-[14px]" style="width:40px">20%</span>
+            <div class="bar-track"><div class="bar-fill" style="width:48%"></div></div>
+            <span class="font-bold text-[14px]" style="width:60px;text-align:right">$1.4K</span>
+          </div>
+          <div class="flex items-center gap-x-4">
+            <span class="font-bold text-[14px]" style="width:40px">10%</span>
+            <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+            <span class="font-bold text-[14px]" style="width:60px;text-align:right">$6.8K</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ EARNINGS SIMULATOR ============ -->
+      <div class="flex flex-col gap-y-6">
+        <span class="font-bold text-[22px]">Earnings simulator</span>
+        <div class="diagram-card flex flex-col gap-y-6">
+          <div class="flex flex-col gap-y-3">
+            <span class="font-bold text-[14px]">1. Your eSIM purchase amount</span>
+            <div class="grid grid-cols-6 gap-2" id="sim-amount">
+              <div class="sim-btn active" data-val="1">$1</div>
+              <div class="sim-btn" data-val="5">$5</div>
+              <div class="sim-btn" data-val="10">$10</div>
+              <div class="sim-btn" data-val="20">$20</div>
+              <div class="sim-btn" data-val="50">$50</div>
+              <div class="sim-btn" data-val="100">$100</div>
+            </div>
+          </div>
+          <div class="flex flex-col gap-y-3">
+            <span class="font-bold text-[14px]">2. If RoamFi business generates revenue per day</span>
+            <span class="caption" style="text-align:left">Total net revenue from all future eSIM purchases combined</span>
+            <div class="grid grid-cols-5 gap-2" id="sim-revenue">
+              <div class="sim-btn" data-val="100">$100</div>
+              <div class="sim-btn active" data-val="1000">$1K</div>
+              <div class="sim-btn" data-val="10000">$10K</div>
+              <div class="sim-btn" data-val="100000">$100K</div>
+              <div class="sim-btn" data-val="1000000">$1M</div>
+            </div>
+          </div>
+          <button class="btn btn-primary w-full h-[52px] rounded-full font-bold" onclick="simulateEarnings()">Simulate my earnings</button>
+          <div id="sim-result" class="text-center text-[15px] text-font-secondary" style="display:none"></div>
+        </div>
+      </div>
+
+      <!-- ============ POOL HISTORY ============ -->
+      <div class="flex flex-col gap-y-6">
+        <span class="font-bold text-[22px]">Revenue sharing pool history</span>
+        <div class="diagram-card flex flex-col gap-y-5">
+          <svg viewBox="0 0 700 220" class="w-full">
+            <path d="M20 190 C 150 185, 300 150, 420 110 C 520 78, 600 40, 680 15" fill="none" stroke="#05E3F7" stroke-width="2.5"/>
+          </svg>
+          <div class="flex justify-center gap-x-2">
+            <button class="chip">6H</button>
+            <button class="chip">1D</button>
+            <button class="chip">1W</button>
+            <button class="chip">1M</button>
+            <button class="chip active">ALL</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ MY STATS ============ -->
+      <div class="flex flex-col gap-y-6">
+        <span class="font-bold text-[22px]">My stats</span>
+        <div class="grid grid-cols-3 gap-4">
+          <div class="stat-card"><div class="font-bold text-[28px]">$0</div><div class="caption mt-1">Total earned</div></div>
+          <div class="stat-card"><div class="font-bold text-[28px]">0%</div><div class="caption mt-1">Current weight</div></div>
+          <div class="stat-card"><div class="font-bold text-[28px]">0</div><div class="caption mt-1">Eligible purchases</div></div>
+        </div>
+      </div>
+
+      <!-- ============ TOP EARNERS ============ -->
+      <div class="flex flex-col gap-y-6">
+        <span class="font-bold text-[22px]">Top business revenue sharing earners</span>
+        <span class="text-[13px] text-font-tertiary leading-[20px]">This list shows earnings from sharing RoamFi's business revenue only. Users' general travel spending is excluded — it exists purely to show how RoamFi buyers can earn from the business revenue.</span>
+        <div class="flex gap-x-2">
+          <button class="chip">Today</button>
+          <button class="chip">Weekly</button>
+          <button class="chip">Monthly</button>
+          <button class="chip active">All</button>
+        </div>
+        <div class="diagram-card flex flex-col gap-y-4" style="padding:32px">
+          <div class="flex items-center gap-x-4">
+            <span class="font-bold text-[14px]" style="width:20px">1</span>
+            <div class="size-[44px] rounded-full flex-center" style="background:#0C1214;color:#fff;font-weight:700;font-size:13px">ML</div>
+            <div class="flex-1"><div class="font-bold text-[14px]">Marcus L.</div><div class="caption" style="text-align:left">445 eligible purchases · 6.07% current weight</div></div>
+            <span class="font-bold text-[14px]" style="color:#0F6E56">+$1,950</span>
+          </div>
+          <div class="flex items-center gap-x-4">
+            <span class="font-bold text-[14px]" style="width:20px">2</span>
+            <div class="size-[44px] rounded-full flex-center" style="background:#0C1214;color:#fff;font-weight:700;font-size:13px">JP</div>
+            <div class="flex-1"><div class="font-bold text-[14px]">Jay Patel</div><div class="caption" style="text-align:left">856 eligible purchases · 1.18% current weight</div></div>
+            <span class="font-bold text-[14px]" style="color:#0F6E56">+$960</span>
+          </div>
+          <div class="flex items-center gap-x-4">
+            <span class="font-bold text-[14px]" style="width:20px">3</span>
+            <div class="size-[44px] rounded-full flex-center" style="background:#0C1214;color:#fff;font-weight:700;font-size:13px">SM</div>
+            <div class="flex-1"><div class="font-bold text-[14px]">Sasha M.</div><div class="caption" style="text-align:left">213 eligible purchases · 3.75% current weight</div></div>
+            <span class="font-bold text-[14px]" style="color:#0F6E56">+$687</span>
+          </div>
+          <div class="flex items-center gap-x-4">
+            <span class="font-bold text-[14px]" style="width:20px">4</span>
+            <div class="size-[44px] rounded-full flex-center" style="background:#0C1214;color:#fff;font-weight:700;font-size:13px">AK</div>
+            <div class="flex-1"><div class="font-bold text-[14px]">Aria Khan</div><div class="caption" style="text-align:left">260 eligible purchases · 5.22% current weight</div></div>
+            <span class="font-bold text-[14px]" style="color:#0F6E56">+$400</span>
+          </div>
+          <div class="flex items-center gap-x-4">
+            <span class="font-bold text-[14px]" style="width:20px">5</span>
+            <div class="size-[44px] rounded-full flex-center" style="background:#0C1214;color:#fff;font-weight:700;font-size:13px">KN</div>
+            <div class="flex-1"><div class="font-bold text-[14px]">Kai N.</div><div class="caption" style="text-align:left">178 eligible purchases · 2.43% current weight</div></div>
+            <span class="font-bold text-[14px]" style="color:#0F6E56">+$120</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ PURCHASE HISTORY ============ -->
+      <div class="flex flex-col gap-y-6">
+        <span class="font-bold text-[22px]">RoamFi eSIM purchases history</span>
+        <span class="text-[13px] text-font-tertiary">Full transparency — every eSIM purchase made on RoamFi, in real time.</span>
+        <div class="rounded-[20px] overflow-hidden" style="border:1px solid #4F596429;background:#fff">
+          <div class="grid gap-3 px-6 py-4" style="grid-template-columns:100px 1fr 150px 70px;border-bottom:1px solid #4F596429">
+            <span class="text-[13px]" style="color:#9AA0A6">Order ID</span>
+            <span class="text-[13px]" style="color:#9AA0A6">eSIM</span>
+            <span class="text-[13px]" style="color:#9AA0A6">Purchased</span>
+            <span class="text-[13px] text-right" style="color:#9AA0A6">Price</span>
+          </div>
+          <div class="grid gap-3 px-6 py-4" style="grid-template-columns:100px 1fr 150px 70px;border-bottom:1px solid #4F596414">
+            <span class="text-[13px]">849213</span>
+            <span class="text-[14px]">eSIM — Japan, 5GB / 7 days</span>
+            <span class="text-[13px] text-font-secondary">Aug 6, 2026, 14:32</span>
+            <span class="text-[14px] text-right">$12.00</span>
+          </div>
+          <div class="grid gap-3 px-6 py-4" style="grid-template-columns:100px 1fr 150px 70px;border-bottom:1px solid #4F596414">
+            <span class="text-[13px]">849187</span>
+            <span class="text-[14px]">eSIM — Singapore, 3GB / 5 days</span>
+            <span class="text-[13px] text-font-secondary">Aug 6, 2026, 11:05</span>
+            <span class="text-[14px] text-right">$8.50</span>
+          </div>
+          <div class="grid gap-3 px-6 py-4" style="grid-template-columns:100px 1fr 150px 70px;border-bottom:1px solid #4F596414">
+            <span class="text-[13px]">849154</span>
+            <span class="text-[14px]">eSIM — United States, 10GB / 30 days</span>
+            <span class="text-[13px] text-font-secondary">Aug 5, 2026, 22:47</span>
+            <span class="text-[14px] text-right">$24.00</span>
+          </div>
+          <div class="grid gap-3 px-6 py-4" style="grid-template-columns:100px 1fr 150px 70px;border-bottom:1px solid #4F596414">
+            <span class="text-[13px]">849098</span>
+            <span class="text-[14px]">eSIM — Germany, 5GB / 10 days</span>
+            <span class="text-[13px] text-font-secondary">Aug 5, 2026, 16:13</span>
+            <span class="text-[14px] text-right">$11.00</span>
+          </div>
+          <div class="grid gap-3 px-6 py-4" style="grid-template-columns:100px 1fr 150px 70px;border-bottom:1px solid #4F596414">
+            <span class="text-[13px]">849051</span>
+            <span class="text-[14px]">eSIM — Turkey, 3GB / 7 days</span>
+            <span class="text-[13px] text-font-secondary">Aug 5, 2026, 09:28</span>
+            <span class="text-[14px] text-right">$9.00</span>
+          </div>
+          <div class="grid gap-3 px-6 py-4" style="grid-template-columns:100px 1fr 150px 70px">
+            <span class="text-[13px]">848997</span>
+            <span class="text-[14px]">eSIM — Thailand, 20GB / 30 days</span>
+            <span class="text-[13px] text-font-secondary">Aug 4, 2026, 20:56</span>
+            <span class="text-[14px] text-right">$29.00</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </main>
 
@@ -440,6 +765,51 @@
     </div>
     </div>
   </footer>
+
+<script>
+  function showPage(id, anchor) {
+    document.querySelectorAll('.page').forEach(function(p) { p.style.display = 'none'; });
+    document.getElementById('page-' + id).style.display = '';
+    location.hash = id === 'home' && !anchor ? '' : (anchor || id);
+    if (anchor) {
+      setTimeout(function() {
+        var el = document.getElementById(anchor);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 30);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }
+  window.addEventListener('DOMContentLoaded', function() {
+    var hash = location.hash.replace('#', '');
+    if (hash === 'revenue-sharing') {
+      showPage('revenue-sharing');
+    } else if (hash === 'destinations' || hash === 'faq') {
+      showPage('home', hash);
+    }
+  });
+</script>
+<script>
+    document.querySelectorAll('#sim-amount .sim-btn').forEach(b => b.addEventListener('click', () => {
+      document.querySelectorAll('#sim-amount .sim-btn').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+    }));
+    document.querySelectorAll('#sim-revenue .sim-btn').forEach(b => b.addEventListener('click', () => {
+      document.querySelectorAll('#sim-revenue .sim-btn').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+    }));
+    function simulateEarnings() {
+      const amount = parseFloat(document.querySelector('#sim-amount .sim-btn.active').dataset.val);
+      const revenue = parseFloat(document.querySelector('#sim-revenue .sim-btn.active').dataset.val);
+      const poolShare = revenue * 0.5;
+      const tierShare = poolShare * 0.4;
+      const assumedPoolSize = 2000;
+      const estimate = tierShare * (amount / (amount + assumedPoolSize));
+      const el = document.getElementById('sim-result');
+      el.style.display = 'block';
+      el.innerHTML = 'Estimated daily earnings while in the top tier: <span style="color:#0C1214;font-weight:700">$' + estimate.toFixed(2) + '</span><br><span style="font-size:12px">Illustrative example — assumes you stay in the highest-weight pool</span>';
+    }
+  </script>
 
 </div>
 </body>
