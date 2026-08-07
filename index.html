@@ -173,14 +173,14 @@
             <div class="flex flex-col bg-white rounded-[24px] border-[0.5px] border-[#4F596429] overflow-hidden" style="width:520px">
               <div class="h-[60px] font-medium px-8 flex items-end">Popular destinations</div>
               <div class="grid grid-cols-4 gap-2 px-4 py-2">
-                <button onclick="showPage('home','destinations')" class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-us rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>United States</span></button>
-                <button onclick="showPage('home','destinations')" class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-gb rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>United Kingdom</span></button>
-                <button onclick="showPage('home','destinations')" class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-tr rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Turkey</span></button>
-                <button onclick="showPage('home','destinations')" class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-th rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Thailand</span></button>
-                <button onclick="showPage('home','destinations')" class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-es rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Spain</span></button>
-                <button onclick="showPage('home','destinations')" class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-jp rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Japan</span></button>
-                <button onclick="showPage('home','destinations')" class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-de rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Germany</span></button>
-                <button onclick="showPage('home','destinations')" class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-it rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Italy</span></button>
+                <button onclick="goToCheckout('United States')" class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-us rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>United States</span></button>
+                <button onclick="goToCheckout('United Kingdom')" class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-gb rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>United Kingdom</span></button>
+                <button onclick="goToCheckout('Turkey')" class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-tr rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Turkey</span></button>
+                <button onclick="goToCheckout('Thailand')" class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-th rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Thailand</span></button>
+                <button onclick="goToCheckout('Spain')" class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-es rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Spain</span></button>
+                <button onclick="goToCheckout('Japan')" class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-jp rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Japan</span></button>
+                <button onclick="goToCheckout('Germany')" class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-de rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Germany</span></button>
+                <button onclick="goToCheckout('Italy')" class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-it rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Italy</span></button>
               </div>
               <div class="shrink-0 h-[82px] border-t-[#4F596429] border-t-[0.5px] flex items-center justify-center">
                 <button onclick="showPage('home','destinations')" class="btn btn-primary flex-center gap-x-1 font-bold text-[14px] w-[206px] h-[48px] rounded-full"><span>All Destinations</span><svg class="size-[18px]"><use href="#common-arrow"></use></svg></button>
@@ -215,9 +215,9 @@
                 <svg class="size-6"><use href="#coin-rf"></use></svg>
                 <span class="font-bold text-[15px]">Bonus</span>
                 <div class="relative">
-                  <button onclick="toggleRfInfo(event)" class="btn"><svg class="size-4"><use href="#icon-info"></use></svg></button>
+                  <button onclick="toggleRfInfo(event,'rf-info-tooltip')" class="btn"><svg class="size-4"><use href="#icon-info"></use></svg></button>
                   <div id="rf-info-tooltip" class="absolute left-0 top-6 bg-white rounded-[14px] shadow-lg p-4" style="display:none;width:260px;z-index:30">
-                    <span class="text-[13px] text-font-secondary leading-[20px]">RF is a bonus token which is provided separately from USD by revenue sharing program. More details about RF <a href="https://docs.roamfi.net/tokenomics/governance-token-rf" target="_blank" class="font-bold" style="color:#0C1214;text-decoration:underline">here</a>.</span>
+                    <span class="text-[13px] text-font-secondary leading-[20px]">RF is a bonus token which is provided separately from USD by revenue sharing program. More details about RF <a href="https://www.roamfi.net/reward/rule" target="_blank" class="font-bold" style="color:#0C1214;text-decoration:underline">here</a>.</span>
                   </div>
                 </div>
               </div>
@@ -319,22 +319,22 @@
           <span class="text-center text-[20px] text-font-tertiary">Change countries, not eSIMs or plans. RoamFi switches between countries and networks automatically.</span>
         </div>
         <div class="w-full grid grid-cols-4 gap-[26px]">
-          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-us rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">United States</span></button>
-          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-gb rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">United Kingdom</span></button>
-          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-tr rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Turkey</span></button>
-          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-th rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Thailand</span></button>
-          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-es rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Spain</span></button>
-          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-jp rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Japan</span></button>
-          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-de rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Germany</span></button>
-          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-it rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Italy</span></button>
-          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-fr rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">France</span></button>
-          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-ca rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Canada</span></button>
-          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-cn rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">China</span></button>
-          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-au rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Australia</span></button>
-          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-kr rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">South Korea</span></button>
-          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-ru rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Russia</span></button>
-          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-ua rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Ukraine</span></button>
-          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-sg rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Singapore</span></button>
+          <button onclick="goToCheckout('United States')" class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-us rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">United States</span></button>
+          <button onclick="goToCheckout('United Kingdom')" class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-gb rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">United Kingdom</span></button>
+          <button onclick="goToCheckout('Turkey')" class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-tr rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Turkey</span></button>
+          <button onclick="goToCheckout('Thailand')" class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-th rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Thailand</span></button>
+          <button onclick="goToCheckout('Spain')" class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-es rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Spain</span></button>
+          <button onclick="goToCheckout('Japan')" class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-jp rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Japan</span></button>
+          <button onclick="goToCheckout('Germany')" class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-de rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Germany</span></button>
+          <button onclick="goToCheckout('Italy')" class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-it rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Italy</span></button>
+          <button onclick="goToCheckout('France')" class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-fr rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">France</span></button>
+          <button onclick="goToCheckout('Canada')" class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-ca rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Canada</span></button>
+          <button onclick="goToCheckout('China')" class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-cn rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">China</span></button>
+          <button onclick="goToCheckout('Australia')" class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-au rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Australia</span></button>
+          <button onclick="goToCheckout('South Korea')" class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-kr rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">South Korea</span></button>
+          <button onclick="goToCheckout('Russia')" class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-ru rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Russia</span></button>
+          <button onclick="goToCheckout('Ukraine')" class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-ua rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Ukraine</span></button>
+          <button onclick="goToCheckout('Singapore')" class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-sg rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Singapore</span></button>
         </div>
         <button onclick="showPage('home','destinations')" class="btn btn-primary flex-center gap-x-1 font-bold text-[14px] w-[206px] h-[48px] rounded-full"><span>All Destinations</span><svg class="size-[18px]"><use href="#common-arrow"></use></svg></button>
       </section>
@@ -905,6 +905,76 @@
     </div>
   </main>
 
+  <!-- ============ CHECKOUT PAGE ============ -->
+  <main id="page-checkout" class="page" style="background:#F7F8F9;display:none">
+    <div style="max-width:960px;margin:0 auto;padding:150px 32px 120px;">
+      <div class="grid grid-cols-2 gap-8">
+
+        <!-- LEFT COLUMN -->
+        <div class="flex flex-col gap-y-6">
+          <div class="rounded-[20px] p-8" style="background:#fff;border:1px solid #4F596429">
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-medium text-[20px]">Your details</span>
+              <button class="btn"><svg class="size-5"><use href="#icon-logout"></use></svg></button>
+            </div>
+            <span class="text-[15px]">oppmisis <span class="text-font-tertiary text-[14px]">(login via email oppmisis@gmail.com)</span></span>
+          </div>
+
+          <div class="rounded-[20px] p-8 flex items-center justify-between" style="background:#fff;border:1px solid #4F596429">
+            <span class="font-medium text-[20px]">Payment Method</span>
+            <span class="text-[15px] text-font-secondary">Bank Card</span>
+          </div>
+
+          <div class="rounded-[20px]" style="min-height:560px;background:linear-gradient(100deg,#EEF0F2,#F8F9FA 40%,#E4E7EA 70%,#F4F5F6)"></div>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="flex flex-col gap-y-6">
+          <div class="rounded-[20px] p-8 flex flex-col gap-y-5" style="background:#fff;border:1px solid #4F596429">
+            <span class="font-medium text-[20px]">Purchase Summary</span>
+
+            <div class="flex items-center justify-between pb-4" style="border-bottom:1px solid #4F596414">
+              <span class="text-[15px] text-font-secondary">Data</span>
+              <span id="co-data" class="text-[15px] font-medium">5GB/total</span>
+            </div>
+            <div class="flex items-center justify-between pb-4" style="border-bottom:1px solid #4F596414">
+              <span class="text-[15px] text-font-secondary">Coverage</span>
+              <span id="co-coverage" class="text-[15px] font-medium">United States</span>
+            </div>
+            <div class="flex items-center justify-between pb-4" style="border-bottom:1px solid #4F596414">
+              <span class="text-[15px] text-font-secondary">Validity</span>
+              <span id="co-validity" class="text-[15px] font-medium">3 days</span>
+            </div>
+            <div class="flex items-center justify-between pb-4" style="border-bottom:1px solid #4F596414">
+              <span class="text-[15px] text-font-secondary">Price</span>
+              <span id="co-price" class="text-[15px] font-medium">$ 8.14</span>
+            </div>
+
+            <span class="font-medium text-[18px] mt-2">You will receive</span>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-x-2">
+                <svg class="size-5"><use href="#coin-rf"></use></svg>
+                <span class="text-[15px]"><span class="font-bold">202.08</span> RF (Bonus)</span>
+              </div>
+              <div class="relative" id="co-rf-info-wrap">
+                <button onclick="toggleRfInfo(event,'co-rf-info-tooltip')" class="btn"><svg class="size-4"><use href="#icon-info"></use></svg></button>
+                <div id="co-rf-info-tooltip" class="absolute right-0 top-6 bg-white rounded-[14px] shadow-lg p-4" style="display:none;width:260px;z-index:30;border:1px solid #4F596429">
+                  <span class="text-[13px] text-font-secondary leading-[20px]">RF is a bonus token which is provided separately from USD by revenue sharing program. More details about RF <a href="https://www.roamfi.net/reward/rule" target="_blank" class="font-bold" style="color:#0C1214;text-decoration:underline">here</a>.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-[20px] p-8 flex items-center justify-between" style="background:#fff;border:1px solid #4F596429">
+            <span class="text-[15px] text-font-secondary">Total Amount</span>
+            <span id="co-total" class="font-bold text-[18px]">$ 8.14</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
   <!-- ============ FOOTER ============ -->
   <footer class="mt-auto bg-primary py-20">
     <div style="max-width:1536px;margin:0 auto;padding:0 32px;">
@@ -997,6 +1067,11 @@
       b.classList.add('active');
     }));
 
+    function goToCheckout(country) {
+      document.getElementById('co-coverage').textContent = country;
+      showPage('checkout');
+    }
+
     function completeLogin() {
       document.getElementById('modal-login').classList.remove('open');
       document.getElementById('login-btn').style.display = 'none';
@@ -1012,9 +1087,9 @@
       panel.style.display = panel.style.display === 'none' ? '' : 'none';
       document.getElementById('rf-info-tooltip').style.display = 'none';
     }
-    function toggleRfInfo(e) {
+    function toggleRfInfo(e, tipId) {
       e.stopPropagation();
-      var tip = document.getElementById('rf-info-tooltip');
+      var tip = document.getElementById(tipId);
       tip.style.display = tip.style.display === 'none' ? '' : 'none';
     }
     document.addEventListener('click', function(e) {
@@ -1022,6 +1097,10 @@
       if (wrap && wrap.style.display !== 'none' && !wrap.contains(e.target)) {
         document.getElementById('user-menu-panel').style.display = 'none';
         document.getElementById('rf-info-tooltip').style.display = 'none';
+      }
+      var coWrap = document.getElementById('co-rf-info-wrap');
+      if (coWrap && !coWrap.contains(e.target)) {
+        document.getElementById('co-rf-info-tooltip').style.display = 'none';
       }
     });
 
