@@ -286,7 +286,7 @@
         <div>
           <div class="font-medium text-[60px]">eSIM that pays you back</div>
           <div class="text-[20px] leading-[30px]">Stay connected in <span class="font-bold text-brand">200+</span> destinations with pay-as-you-go or destination plans.</div>
-          <div class="text-[20px] leading-[30px]">Earn <span class="font-bold text-brand">USD</span> back from every eSIM purchase made worldwide.</div>
+          <div class="text-[20px] leading-[30px]">Earn <span class="font-bold text-brand">USD</span> back from every eSIM purchase made by others worldwide.</div>
         </div>
         <button class="btn mt-7 w-full md:w-[412px] h-[76px]">
           <div class="size-full flex items-center pl-[20px] pr-[10px] bg-white/[0.08] rounded-[48px]">
@@ -397,21 +397,21 @@
             <svg class="size-[90px]"><use href="#rs-autojoin"></use></svg>
             <div class="flex flex-col items-center justify-center gap-y-[10px]">
               <span class="text-white font-medium text-[18px]">Buy & Join Automatically</span>
-              <span class="text-[14px] text-center" style="color:#B9BEC2">No sign-up, no referral link — every eSIM purchase enters you into the revenue sharing pool.</span>
+              <span class="text-[14px] text-center" style="color:#B9BEC2">No sign-up, no referral link — every eSIM purchase you make enters you into the revenue sharing pool.</span>
             </div>
           </div>
           <div class="w-[220px] flex flex-col items-center justify-center gap-y-4">
             <svg class="size-[90px]"><use href="#rs-global"></use></svg>
             <div class="flex flex-col items-center justify-center gap-y-[10px]">
               <span class="text-white font-medium text-[18px]">Earn From Global Sales</span>
-              <span class="text-[14px] text-center" style="color:#B9BEC2">Get a share of RoamFi business revenue from eSIM purchases made worldwide for 365 days.</span>
+              <span class="text-[14px] text-center" style="color:#B9BEC2">Get a share of RoamFi business revenue from eSIM purchases made by others worldwide for 365 days.</span>
             </div>
           </div>
           <div class="w-[220px] flex flex-col items-center justify-center gap-y-4">
             <svg class="size-[90px]"><use href="#rs-instant"></use></svg>
             <div class="flex flex-col items-center justify-center gap-y-[10px]">
               <span class="text-white font-medium text-[18px]">Instant USD Payouts</span>
-              <span class="text-[14px] text-center" style="color:#B9BEC2">Balance updates right after each eSIM purchase — spend or cash out anytime.</span>
+              <span class="text-[14px] text-center" style="color:#B9BEC2">Balance updates right after each eSIM purchase by other users — spend or cash out anytime.</span>
             </div>
           </div>
         </div>
@@ -439,7 +439,7 @@
           </div>
           <div class="flex flex-col gap-y-2 p-8 rounded-[20px]" style="border:1px solid #4F596429">
             <span class="font-bold text-[18px]">How do I withdraw my USD balance?</span>
-            <span class="text-font-secondary text-[15px] leading-[24px]">Your balance updates instantly after each eSIM purchase globally. You can spend it on future eSIMs or cash it out from your account at any time.</span>
+            <span class="text-font-secondary text-[15px] leading-[24px]">Your balance updates instantly after each eSIM purchase by other users globally. You can spend it on future eSIMs or cash it out from your account at any time.</span>
           </div>
         </div>
         <button class="btn btn-primary self-center flex-center gap-x-1 font-bold text-[14px] w-[206px] h-[48px] rounded-full"><span>See all FAQs</span><svg class="size-[18px]"><use href="#common-arrow"></use></svg></button>
@@ -455,7 +455,7 @@
       <!-- ============ PAGE HEADER ============ -->
       <div class="flex flex-col items-center gap-y-4">
         <span class="font-medium text-[46px] text-center">Revenue Sharing Rules</span>
-        <span class="text-[18px] text-font-tertiary text-center">Get up to 50% of business revenue from every eSIM purchase</span>
+        <span class="text-[18px] text-font-tertiary text-center">Get up to 50% of business revenue from every eSIM purchase made by others</span>
       </div>
 
       <!-- ============ EXPLANATION TABS ============ -->
@@ -951,6 +951,13 @@
             </div>
 
             <span class="font-medium text-[18px] mt-2">You will receive</span>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-x-2">
+                <svg class="size-5"><use href="#coin-dollar"></use></svg>
+                <span class="text-[15px]"><span class="font-bold">$X</span> from RoamFi revenue sharing</span>
+              </div>
+              <button onclick="showPage('revenue-sharing')" class="btn text-[14px] text-font-tertiary flex items-center gap-x-1">Rule<svg class="size-3"><use href="#icon-chevron-r"></use></svg></button>
+            </div>
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-x-2">
                 <svg class="size-5"><use href="#coin-rf"></use></svg>
