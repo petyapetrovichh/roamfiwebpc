@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RoamFi — demo reconstruction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icons/7.2.3/css/flag-icons.min.css">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          primary: '#0C1214',
+          brand: '#05E3F7',
+          tertiary: '#F4F5F6',
+          'font-primary': '#0C1214',
+          'font-secondary': '#5D6164',
+          'font-tertiary': '#9AA0A6',
+          'font-description': '#5D6164',
+        },
+        fontFamily: { sans: ['Noto Sans', 'ui-sans-serif', 'system-ui'] },
+      }
+    }
+  }
+</script>
+<style>
+  body { font-family: 'Noto Sans', ui-sans-serif, system-ui, sans-serif; }
+  .rf-wrap { max-width: 1536px; margin: 0 auto; padding-left: 2rem; padding-right: 2rem; }
+  @media (max-width: 767px){ .rf-wrap{ padding-left:1.25rem; padding-right:1.25rem; } }
+
+  .btn { position: relative; overflow: hidden; cursor: pointer; border: none; background: none;
+         font: inherit; color: inherit; transition: opacity .2s ease, background-color .2s ease, border-color .2s ease, color .2s ease; }
+  .flex-center { display: flex; align-items: center; justify-content: center; }
+
+  .btn-primary { background:#0C1214; color:#fff; }
+  .btn-primary:hover { opacity:.85; }
+  .btn-secondary { background:transparent; color:#0C1214; }
+  .btn-secondary:hover { background:#F4F5F6; }
+  .btn-outline-primary { background:transparent; color:#0C1214; border:1px solid #0C1214; }
+  .btn-outline-primary:hover { background:#0C1214; color:#fff; }
+  .btn-outline-secondary { background:transparent; color:#0C1214; border:1px solid rgba(79,89,100,.16); }
+  .btn-outline-secondary:hover { border-color:#05E3F7; background: rgba(5,227,247,.06); }
+  .btn-brand { background:#05E3F7; color:#0C1214; }
+  .btn-brand:hover { opacity:.85; }
+  .btn-white { background:#fff; color:#0C1214; }
+  .btn-white:hover { opacity:.85; }
+  .btn-tertiary { background:#F4F5F6; color:#0C1214; }
+  .btn-tertiary:hover { background:#E9EBEC; }
+  .btn-error { background:#F64658; color:#fff; }
+  .btn-error:hover { opacity:.85; }
+
+  .link-secondary { color: inherit; }
+  .link-secondary:hover { color: #fff; text-decoration: underline; }
+
+  /* hover-driven dropdowns, same approach as source markup */
+  .dropdown-panel { transform: scaleY(0); opacity: 0; transform-origin: top; pointer-events: none;
+                     transition: opacity .2s ease, transform .2s ease; }
+  .group:hover .dropdown-panel { transform: scaleY(1); opacity: 1; pointer-events: auto; }
+
+  [data-modal] { display: none; }
+  [data-modal].open { display: flex; }
+</style>
+</head>
+<body class="font-sans text-font-primary">
+
+<!-- ============ SVG SPRITE ============ -->
+<svg class="hidden" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="navi-logo" viewBox="0 0 130 28">
+      <g>
+        <path d="M0 7.61121C0 3.55219 3.29048 0.261719 7.34949 0.261719H20.1283C24.1874 0.261719 27.4778 3.5522 27.4778 7.61121V20.3901C27.4778 24.4491 24.1873 27.7395 20.1283 27.7395H7.34949C3.29047 27.7395 0 24.4491 0 20.3901V7.61121Z" fill="#05E3F7"></path>
+        <path d="M20.8066 11.4248V17.0918L17.9473 15.1211V12.6084L15.6084 10.2695H9.73438V18.292L13.0225 16.3018L13.8125 15.8232L14.5732 16.3477L20.7617 20.6133H15.7236L13.7119 19.2266L11.4199 20.6133H6.875V7.41016H16.792L20.8066 11.4248Z" fill="#0C1214"></path>
+      </g>
+      <path d="M39.0371 5.12402L42.8145 5.125C46.2272 5.12501 48.9915 7.89694 48.9795 11.3105C48.9718 13.4116 47.9127 15.2631 46.3027 16.3701L46.4199 16.5635L47.499 18.3516L49.6572 21.9268L50.2314 22.8779H46.4863L44.7549 20.0078L43.6758 18.2207L43.6748 18.2197L43.2041 17.4395C43.0756 17.4475 42.9459 17.4531 42.8154 17.4531H39.0371V22.8779H35.832V5.12305H39.0371V5.12402ZM79.6973 6.04004L79.8115 6.27539L87.4561 22.0576L87.8535 22.8779H84.291L82.8584 19.9189H74.2627L72.9219 22.8779H69.4023L69.7578 22.0947L76.9092 6.3125L77.0176 6.07324L77.4482 5.12305H79.2539L79.6973 6.04004ZM92.7119 6.11133L92.9199 6.31152H92.9189L99.5049 12.6328L105.854 6.44238L105.856 6.44141L106.066 6.2373L107.212 5.12305H108.577V22.8779H105.371V11.3926L100.634 16.0127L100.55 16.0947L99.5215 17.0986L98.4873 16.1006L98.4014 16.0176V16.0166L93.4111 11.2256V22.8779H90.2061V5.12305H91.6846L92.7119 6.11133ZM123.496 8.08301H114.495V11.6592H122.756V14.8643H114.495V22.8779H111.29V5.12305H123.496V8.08301ZM129.044 22.8779H125.839V5.12305H129.044V22.8779ZM60.5615 5.38281C65.079 5.61581 68.6288 9.41057 68.6289 14.002L68.6182 14.4434C68.399 18.8341 64.9331 22.3947 60.5615 22.6201L60.1211 22.6318C55.5438 22.6316 51.8514 18.9804 51.625 14.4434L51.6143 14.002C51.6143 9.26264 55.3959 5.37129 60.1211 5.37109L60.5615 5.38281ZM60.1211 8.57617C57.2198 8.57634 54.8194 10.9791 54.8193 14.002L54.8262 14.2832C54.9699 17.1721 57.3104 19.4266 60.1211 19.4268L60.3916 19.4199C63.17 19.2761 65.4225 16.93 65.4229 14.002L65.416 13.7207C65.2772 10.9245 63.0805 8.72228 60.3916 8.58301L60.1211 8.57617ZM75.7148 16.7139H81.3057L78.416 10.75L75.7148 16.7139ZM39.0371 14.248H42.8145L42.9668 14.2441C44.5259 14.165 45.7673 12.8785 45.7734 11.2998C45.7789 9.71263 44.5345 8.41384 42.9678 8.33398L42.8154 8.33008H39.0371V14.248Z" fill="currentColor"></path>
+    </symbol>
+    <symbol id="common-arrow" viewBox="0 0 19 18" fill="none"><path d="M11.6357 5.19238L15.3857 8.56738L16.2119 9.31055L15.3857 10.0537L11.6357 13.4287L10.8926 14.0977L9.55469 12.6113L10.2979 11.9424L12.1113 10.3105H2.5V8.31055H12.1113L10.2979 6.67871L9.55469 6.00977L10.8926 4.52344L11.6357 5.19238Z" fill="currentColor"></path></symbol>
+    <symbol id="common-search" viewBox="0 0 18 18" fill="none"><path d="M8.25 1.5C11.5637 1.5 14.25 4.18629 14.25 7.5C14.25 9.33168 13.4276 10.9698 12.1338 12.0703L14.6377 15.2891L15.0977 15.8809L13.9141 16.8018L13.4541 16.209L10.875 12.8955C10.082 13.282 9.19157 13.5 8.25 13.5C4.93629 13.5 2.25 10.8137 2.25 7.5C2.25 4.18629 4.93629 1.5 8.25 1.5ZM8.25 3C5.76472 3 3.75 5.01472 3.75 7.5C3.75 9.98528 5.76472 12 8.25 12C10.7353 12 12.75 9.98528 12.75 7.5C12.75 5.01472 10.7353 3 8.25 3Z" fill="currentColor"></path></symbol>
+    <symbol id="common-dropdown" viewBox="0 0 17 16" fill="none"><path d="M12.7122 6.16602L8.04557 10.8327L3.37891 6.16602" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"></path></symbol>
+    <symbol id="common-close" viewBox="0 0 24 25" fill="none"><path d="M19.4141 6.45312L13.417 12.4492L19.4141 18.4463L18 19.8604L12.0029 13.8633L6.00684 19.8604L4.59277 18.4463L10.5889 12.4492L4.59277 6.45312L6.00684 5.03906L12.0029 11.0352L18 5.03906L19.4141 6.45312Z" fill="currentColor"></path></symbol>
+    <symbol id="common-email" viewBox="0 0 20 20" fill="none"><path d="M2.9165 16.25H17.0832V10V3.75H9.99984H2.9165V10V16.25Z" stroke="#0C1214" stroke-width="1.5"></path><path d="M3.3335 4.58301L10.0002 11.2497L16.6668 4.58301" stroke="#0C1214" stroke-width="1.5" stroke-linecap="square"></path></symbol>
+    <symbol id="common-apple" viewBox="0 0 39 40" fill="none"><path d="M25.6091 11.8796C28.2187 12.0783 30.1982 13.1093 31.5068 14.9839C29.1672 16.405 28.0094 18.3324 28.0244 20.8895C28.0244 21.0207 27.7801 25.1493 32.3208 27.2903C31.4733 29.8551 28.5636 35.55 25.1779 35.5987C23.2206 35.5987 22.0726 34.3535 19.8566 34.3535C17.5735 34.3538 16.3322 35.5575 14.5775 35.5987C11.2219 35.6996 8.0053 29.4352 7.11277 26.8778C6.44542 24.9358 6.1114 23.0497 6.11133 21.2238C6.11133 15.0445 10.2399 12.0068 14.1245 11.9468C16.0063 11.9469 18.3978 13.3179 19.4441 13.3185C20.434 13.3185 23.1381 11.6846 25.6091 11.8796Z" fill="currentColor"></path><path d="M25.7559 4.40234C25.8122 5.14105 25.9837 7.19613 24.0827 9.45332C22.7179 11.0467 21.0604 11.9808 19.2457 11.8421C19.092 9.91858 19.8082 8.21159 21.0268 6.83175C22.1329 5.54566 24.0761 4.49983 25.7559 4.40234Z" fill="currentColor"></path></symbol>
+    <symbol id="navi-apple" viewBox="0 0 20 20" fill="none"><path d="M13.3398 5.76986C14.6992 5.87337 15.7303 6.41038 16.4119 7.38688C15.1933 8.1271 14.5902 9.13107 14.598 10.4631C14.598 10.5314 14.4707 12.682 16.8359 13.7972C16.3945 15.1332 14.8789 18.0996 13.1152 18.125C12.0957 18.125 11.4977 17.4764 10.3434 17.4764C9.15418 17.4765 8.50757 18.1035 7.59359 18.125C5.84567 18.1775 4.17015 14.9145 3.70524 13.5824C3.35762 12.5707 3.18363 11.5883 3.18359 10.6372C3.18359 7.41846 5.33415 5.8361 7.35758 5.80485C8.33783 5.80493 9.58352 6.51908 10.1286 6.51937C10.6442 6.51937 12.0527 5.66829 13.3398 5.76986Z" fill="currentColor"></path><path d="M13.4163 1.875C13.4456 2.25979 13.535 3.33027 12.5448 4.50602C11.8339 5.33599 10.9705 5.82259 10.0252 5.75033C9.94515 4.74837 10.3182 3.85921 10.953 3.14046C11.5291 2.47054 12.5413 1.92578 13.4163 1.875Z" fill="currentColor"></path></symbol>
+    <symbol id="navi-google" viewBox="0 0 20 20" fill="none"><path d="M12.3347 9.35551L5.7649 2.76784L14.1238 7.56645L12.3347 9.35551ZM4.05026 2.38086C3.66328 2.58328 3.4043 2.95241 3.4043 3.43167V16.5683C3.4043 17.0476 3.66328 17.4167 4.05026 17.6191L11.6887 9.9985L4.05026 2.38086ZM16.7076 9.09653L14.9543 8.08144L12.9985 10.0015L14.9543 11.9215L16.7434 10.9064C17.2792 10.4807 17.2792 9.52221 16.7076 9.09653ZM5.7649 17.2351L14.1238 12.4365L12.3347 10.6474L5.7649 17.2351Z" fill="currentColor"></path></symbol>
+    <symbol id="google-play-badge" viewBox="0 0 32 32" fill="none">
+      <path d="M7.63473 28.5466L20.2923 15.8179L7.84319 3.29883C7.34653 3.61721 7 4.1669 7 4.8339V27.1664C7 27.7355 7.25223 28.2191 7.63473 28.5466Z" fill="url(#pgp0)"></path>
+      <path d="M30.048 14.4003C31.3169 15.0985 31.3169 16.9012 30.048 17.5994L24.9287 20.4165L20.292 15.8175L24.6923 11.4531L30.048 14.4003Z" fill="url(#pgp1)"></path>
+      <path d="M24.9292 20.4168L20.2924 15.8179L7.63477 28.5466C8.19139 29.0232 9.02389 29.1691 9.75635 28.766L24.9292 20.4168Z" fill="url(#pgp2)"></path>
+      <path d="M7.84277 3.29865L20.2919 15.8177L24.6922 11.4533L9.75583 3.23415C9.11003 2.87878 8.38646 2.95013 7.84277 3.29865Z" fill="url(#pgp3)"></path>
+      <defs>
+        <linearGradient id="pgp0" x1="15.6769" y1="10.874" x2="7.07106" y2="19.5506" gradientUnits="userSpaceOnUse"><stop stop-color="#00C3FF"></stop><stop offset="1" stop-color="#1BE2FA"></stop></linearGradient>
+        <linearGradient id="pgp1" x1="20.292" y1="15.8176" x2="31.7381" y2="15.8176" gradientUnits="userSpaceOnUse"><stop stop-color="#FFCE00"></stop><stop offset="1" stop-color="#FFEA00"></stop></linearGradient>
+        <linearGradient id="pgp2" x1="7.36932" y1="30.1004" x2="22.595" y2="17.8937" gradientUnits="userSpaceOnUse"><stop stop-color="#DE2453"></stop><stop offset="1" stop-color="#FE3944"></stop></linearGradient>
+        <linearGradient id="pgp3" x1="8.10725" y1="1.90137" x2="22.5971" y2="13.7365" gradientUnits="userSpaceOnUse"><stop stop-color="#11D574"></stop><stop offset="1" stop-color="#01F176"></stop></linearGradient>
+      </defs>
+    </symbol>
+    <symbol id="navi-twitter" viewBox="0 0 20 20" fill="none"><path d="M14.8338 2.45508H17.3886L11.7793 8.84184L18.3327 17.5056H13.19L9.16352 12.2407L4.55394 17.5056H1.99924L7.9417 10.6746L1.66602 2.45508H6.93648L10.5742 7.26459L14.8338 2.45508ZM13.9397 16.0061H15.3559L6.19228 3.89904H4.67057L13.9397 16.0061Z" fill="currentColor"></path></symbol>
+    <symbol id="navi-telegram" viewBox="0 0 20 20" fill="none"><path d="M15.3648 3.93631C15.3648 3.93631 16.8305 3.34869 16.709 4.77519C16.6676 5.36281 16.3019 7.41813 16.0162 9.6423L15.0404 16.2311C15.0404 16.2311 14.959 17.1949 14.2262 17.3637C13.4946 17.5313 12.396 16.7761 12.1918 16.6086C12.029 16.4823 9.14162 14.5945 8.12445 13.6705C7.84011 13.4179 7.51312 12.9154 8.16452 12.3278L12.4361 8.13205C12.9247 7.62819 13.4132 6.45428 11.3789 7.87945L5.68299 11.8678C5.68299 11.8678 5.03159 12.2866 3.8115 11.9077L1.16713 11.0701C1.16713 11.0701 0.190024 10.44 1.85859 9.81114C5.92727 7.83824 10.9317 5.82412 15.3648 3.93498V3.93631Z" fill="currentColor"></path></symbol>
+    <symbol id="navi-binance" viewBox="0 0 26 26" fill="none"><path d="M20.3256 17.5898L13 24.9154L5.6745 17.5898L8.37137 14.9005L13 19.5284L17.631 14.8982L20.3256 17.5898ZM15.7329 12.9972H15.7314L15.7344 12.9987L13 15.7331L10.2656 12.9987L13 10.2643L15.7329 12.9972ZM24.9167 12.9994L22.2236 15.6926L19.5305 12.9994L22.2236 10.3063L24.9167 12.9994ZM6.4696 12.9979L3.77649 15.6911L1.08337 12.9987L3.77724 10.3048L6.4696 12.9979ZM20.3241 8.40607L17.631 11.0992L13 6.46901L8.37137 11.0969L5.67826 8.40381L13 1.08203L20.3241 8.40607Z" fill="currentColor"></path></symbol>
+    <symbol id="navi-facebook" viewBox="0 0 24 24" fill="none"><path d="M17.7028 2.37688C17.7028 2.30395 17.6885 2.23173 17.6606 2.16435C17.6326 2.09697 17.5917 2.03575 17.5402 1.98417C17.4886 1.9326 17.4274 1.89169 17.36 1.86378C17.2926 1.83587 17.2204 1.82151 17.1475 1.82151H14.3706C12.9723 1.75186 11.6033 2.23847 10.5626 3.17504C9.52201 4.11161 8.89437 5.42199 8.81686 6.81987V9.81888H6.03999C5.8927 9.81888 5.75144 9.8774 5.64728 9.98155C5.54313 10.0857 5.48462 10.227 5.48462 10.3743V13.2622C5.48462 13.4095 5.54313 13.5508 5.64728 13.6549C5.75144 13.7591 5.8927 13.8176 6.03999 13.8176H8.81686V21.2596C8.81686 21.4069 8.87537 21.5481 8.97952 21.6523C9.08368 21.7564 9.22494 21.8149 9.37223 21.8149H12.7045C12.7774 21.8149 12.8496 21.8006 12.917 21.7727C12.9844 21.7448 13.0456 21.7038 13.0972 21.6523C13.1487 21.6007 13.1897 21.5395 13.2176 21.4721C13.2455 21.4047 13.2598 21.3325 13.2598 21.2596V13.8176H16.17C16.2935 13.8193 16.4141 13.7799 16.5126 13.7055C16.6112 13.631 16.6822 13.5259 16.7143 13.4066L17.514 10.5187C17.5361 10.4366 17.5391 10.3506 17.5227 10.2672C17.5063 10.1838 17.471 10.1053 17.4195 10.0377C17.368 9.97007 17.3017 9.91519 17.2256 9.87726C17.1496 9.83933 17.0658 9.81936 16.9808 9.81888H13.2598V6.81987C13.2875 6.54493 13.4166 6.29017 13.622 6.10532C13.8274 5.92047 14.0943 5.81881 14.3706 5.8202H17.1475C17.2948 5.8202 17.436 5.76168 17.5402 5.65753C17.6443 5.55338 17.7028 5.41212 17.7028 5.26482V2.37688Z" fill="currentColor"></path></symbol>
+    <symbol id="navi-instagram" viewBox="0 0 24 24" fill="none"><path d="M12.0013 3.00049C13.2418 3.00049 14.4734 2.98929 15.7162 3.05908C17.157 3.12888 18.4337 3.45543 19.4896 4.51123C20.5432 5.56482 20.8719 6.84389 20.9418 8.28467C21.0116 9.52507 21.0004 10.7569 21.0004 11.9995C21.0004 13.2423 21.0138 14.4748 20.9418 15.7153C20.8719 17.1561 20.5455 18.4329 19.4896 19.4888C18.436 20.5423 17.157 20.8711 15.7162 20.9409C14.4757 21.0107 13.2441 20.9995 12.0013 20.9995C10.7609 20.9995 9.52922 21.0107 8.2865 20.9409C6.84572 20.8711 5.56893 20.5444 4.51306 19.4888C3.45949 18.4352 3.13076 17.1561 3.06091 15.7153C2.99112 14.4748 3.00232 13.2401 3.00232 11.9995C3.00232 10.7591 2.99113 9.52732 3.06091 8.28467C3.13075 6.84389 3.45722 5.56707 4.51306 4.51123C5.56669 3.45779 6.84571 3.12887 8.2865 3.05908C9.52697 2.9893 10.7586 3.00049 12.0013 3.00049ZM11.9994 7.38232C9.44413 7.38232 7.38147 9.44431 7.38123 11.9995C7.38123 14.5549 9.44398 16.6177 11.9994 16.6177C14.5546 16.6174 16.6166 14.5548 16.6166 11.9995C16.6163 9.44447 14.5544 7.38258 11.9994 7.38232ZM11.9984 8.99854C13.6508 8.99858 14.9992 10.3472 14.9994 11.9995C14.9994 13.6521 13.6509 15.0014 11.9984 15.0015C10.3458 15.0015 8.99744 13.6521 8.99744 11.9995C8.99768 10.3471 10.346 8.99854 11.9984 8.99854ZM16.806 6.11475C16.2095 6.11475 15.727 6.59633 15.7269 7.19287C15.7269 7.78951 16.2094 8.27197 16.806 8.27197C17.4026 8.27184 17.8819 7.79168 17.8842 7.19287C17.884 6.59641 17.4025 6.11488 16.806 6.11475Z" fill="currentColor"></path></symbol>
+    <symbol id="navi-tiktok" viewBox="0 0 24 24" fill="none"><path d="M18.1083 6.27621C17.9744 6.20507 17.8445 6.12998 17.7146 6.04698C17.3446 5.80193 17.0101 5.51341 16.707 5.18931C15.9551 4.3277 15.6757 3.45027 15.5733 2.83766H15.5773C15.4907 2.3278 15.5261 1.99976 15.534 1.99976H12.1134V15.2876C12.1134 15.4655 12.1134 15.6433 12.1055 15.8172C12.1055 15.837 12.1016 15.8607 12.1016 15.8805C12.1016 15.8884 12.1016 15.9002 12.0976 15.9081V15.916C12.0898 16.0346 12.074 16.1532 12.0504 16.2678C12.0268 16.3864 11.9953 16.501 11.9599 16.6116C11.9245 16.7263 11.8772 16.8369 11.826 16.9436C11.7749 17.0504 11.7198 17.1571 11.6529 17.2559C11.5899 17.3547 11.519 17.4535 11.4442 17.5444C11.3694 17.6353 11.2868 17.7223 11.2041 17.8053C11.1175 17.8883 11.027 17.9634 10.9325 18.0345C10.8381 18.1056 10.7396 18.1689 10.6334 18.2282C10.4169 18.3507 10.1886 18.4455 9.94847 18.5088C9.70836 18.572 9.46431 18.6036 9.21633 18.6036C7.62216 18.6036 6.33108 17.2994 6.33108 15.6868C6.33108 14.0742 7.62216 12.77 9.21633 12.77C9.51942 12.77 9.81464 12.8174 10.1059 12.9122L10.1099 9.41439C9.89336 9.38673 9.67293 9.37092 9.45644 9.36301C9.23601 9.35906 9.01952 9.36301 8.79909 9.37882C8.5826 9.39463 8.36217 9.42625 8.14961 9.46577C7.93312 9.5053 7.72056 9.55668 7.51194 9.61596C7.30332 9.6792 7.0947 9.75034 6.89396 9.83334C6.69321 9.91634 6.49246 10.0112 6.29959 10.114C6.10671 10.2167 5.91777 10.3313 5.73671 10.4539C5.55564 10.5764 5.38245 10.7108 5.21319 10.8491C4.91797 11.106 4.64637 11.3866 4.40233 11.691C4.15434 11.9953 3.93785 12.3194 3.74891 12.6632C3.60327 12.9122 3.06007 13.9201 2.99316 15.5485C2.94986 16.4733 3.22933 17.4337 3.35923 17.829V17.8369C3.44189 18.0701 3.76466 18.8685 4.28818 19.5404C4.71329 20.0818 5.20925 20.5482 5.77213 20.9434V20.9355L5.78001 20.9434C7.43716 22.0738 9.27537 21.9987 9.27537 21.9987C9.59421 21.9869 10.657 21.9987 11.8693 21.4217C13.2116 20.7853 13.9752 19.8328 13.9752 19.8328C14.2193 19.5483 14.4358 19.2479 14.6286 18.9238C14.8215 18.6036 14.9868 18.2677 15.1207 17.9159C15.4316 17.0978 15.534 16.1176 15.534 15.7263V8.68716C15.5773 8.71087 16.1283 9.07844 16.1283 9.07844C16.1283 9.07844 16.9235 9.59225 18.1673 9.92425C19.0608 10.1614 20.2614 10.2128 20.2614 10.2128V6.80188C19.8363 6.84931 18.9821 6.71493 18.1083 6.27621Z" fill="currentColor"></path></symbol>
+    <symbol id="navi-youtube" viewBox="0 0 24 24" fill="none"><path d="M22.9216 6.64804C22.6678 5.67853 21.9249 4.91493 20.9826 4.65396C19.2609 4.16992 12.375 4.16992 12.375 4.16992C12.375 4.16992 5.48899 4.16992 3.76732 4.63609C2.84285 4.89706 2.08211 5.67924 1.8283 6.64876C1.375 8.41904 1.375 12.0897 1.375 12.0897C1.375 12.0897 1.375 15.779 1.8283 17.5307C2.08211 18.4995 2.82498 19.2638 3.76732 19.5248C5.50687 20.0096 12.375 20.0096 12.375 20.0096C12.375 20.0096 19.2609 20.0096 20.9826 19.5434C21.9249 19.2824 22.6678 18.5188 22.9216 17.5493C23.3749 15.779 23.3749 12.1083 23.3749 12.1083C23.3749 12.1083 23.3928 8.41833 22.9216 6.64876V6.64804ZM10.1821 15.4802V8.69717L15.9084 12.0883L10.1821 15.4795V15.4802Z" fill="currentColor"></path></symbol>
+    <symbol id="navi-linkin" viewBox="0 0 50 50" fill="currentColor"><path d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10 c0-2-1-4-3.5-4.04h-0.08C27,24.96,26,27.02,26,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56 c3.97,0,7.19,2.73,7.19,8.26V39z"></path></symbol>
+    <symbol id="home-earth" viewBox="0 0 46 46" fill="none"><path d="M23 5.125C32.8721 5.125 40.875 13.1279 40.875 23C40.875 32.8721 32.8721 40.875 23 40.875C13.1279 40.875 5.125 32.8721 5.125 23C5.125 13.1279 13.1279 5.125 23 5.125ZM33.8457 13.5107C33.8441 14.085 33.6366 14.6402 33.2617 15.0752L33.2607 15.0742L29.3643 19.6143H29.3633C28.9789 20.0608 28.4442 20.3502 27.8604 20.4287L22.3311 21.1787H22.3281C21.7312 21.2578 21.1277 21.1102 20.6338 20.7676V20.7686L17.1514 18.4834C17.1381 18.4747 17.1252 18.4654 17.1123 18.4561C17.0682 18.424 17.0179 18.401 16.9648 18.3887C16.9117 18.3764 16.8564 18.3753 16.8027 18.3848C16.749 18.3942 16.6971 18.4146 16.6514 18.4443C16.6058 18.474 16.5665 18.5125 16.5361 18.5576L12.8574 24.0566C12.8131 24.1239 12.7896 24.2027 12.7891 24.2832L12.752 30.6504C12.75 31.046 12.6501 31.4352 12.4619 31.7832C12.2736 32.1315 12.0022 32.4282 11.6719 32.6465L11.6699 32.6475L10.833 33.1963C13.7451 36.6676 18.1145 38.875 23 38.875C26.0648 38.875 28.9261 38.0053 31.3525 36.501L30.5654 35.7139L26.6152 34.6182C26.042 34.4676 25.545 34.1109 25.2188 33.6172C24.8925 33.1233 24.7596 32.526 24.8457 31.9404L25.2646 29.0938C25.3255 28.6816 25.4915 28.2927 25.7471 27.9648C26.0026 27.6372 26.3389 27.3809 26.7227 27.2217L32.0752 24.9961L32.2363 24.9365C32.6148 24.8104 33.0204 24.7792 33.415 24.8486C33.8655 24.9281 34.2846 25.1346 34.6221 25.4434L37.9131 28.4521C38.5349 26.7518 38.875 24.9157 38.875 23C38.875 18.4265 36.9406 14.3051 33.8457 11.4082V13.5107ZM23 7.125C14.2325 7.125 7.125 14.2325 7.125 23C7.125 26.163 8.05022 29.1098 9.64453 31.585L10.5693 30.9775C10.6251 30.9407 10.6713 30.8908 10.7031 30.832C10.7349 30.7733 10.7516 30.7074 10.752 30.6406L10.7891 24.2705C10.7923 23.7988 10.9326 23.3391 11.1934 22.9473L14.876 17.4434L14.8779 17.4404C15.0585 17.1724 15.2905 16.9427 15.5615 16.7666C15.8326 16.5905 16.1368 16.4712 16.4551 16.415C16.7734 16.3589 17.1001 16.3676 17.415 16.4404C17.7143 16.5096 17.9963 16.637 18.248 16.8125L21.7314 19.0967L21.7666 19.1211C21.8521 19.1827 21.958 19.2094 22.0625 19.1963L27.5928 18.4473C27.6924 18.434 27.7827 18.385 27.8477 18.3096L31.7461 13.7705L31.7471 13.7686C31.8096 13.6959 31.8448 13.6036 31.8457 13.5078V9.81543C29.318 8.11622 26.2747 7.125 23 7.125Z" fill="#0C1214"></path></symbol>
+    <symbol id="home-data" viewBox="0 0 46 46" fill="none"><path d="M11.3936 10.1182C7.77786 13.3675 5.50391 18.0804 5.50391 23.3242C5.50394 28.5678 7.77816 33.2799 11.3936 36.5293L10.0576 38.0166C6.03488 34.4011 3.50394 29.1586 3.50391 23.3242C3.50391 17.4896 6.03459 12.2463 10.0576 8.63086L11.3936 10.1182ZM36.4492 8.63086C40.4725 12.2464 43.0039 17.4892 43.0039 23.3242C43.0039 29.1589 40.4722 34.4011 36.4492 38.0166L35.1133 36.5293C38.729 33.2799 41.0039 28.5681 41.0039 23.3242C41.0039 18.0801 38.7293 13.3675 35.1133 10.1182L36.4492 8.63086ZM24.7393 21.749H28.958L21.9268 33.7021V24.5615H17.708L24.7393 13.3115V21.749ZM16.4053 15.6992C14.3175 17.5756 13.0039 20.2963 13.0039 23.3242C13.0039 26.3519 14.3178 29.0719 16.4053 30.9482L15.0693 32.4365C12.5743 30.194 11.0039 26.9429 11.0039 23.3242C11.0039 19.7052 12.574 16.4535 15.0693 14.2109L16.4053 15.6992ZM31.4375 14.2109C33.9331 16.4535 35.5039 19.7049 35.5039 23.3242C35.5039 26.9433 33.9329 30.194 31.4375 32.4365L30.1016 30.9482C32.1893 29.0718 33.5039 26.3522 33.5039 23.3242C33.5039 20.296 32.1896 17.5756 30.1016 15.6992L31.4375 14.2109Z" fill="#0C1214"></path></symbol>
+    <symbol id="home-reward" viewBox="0 0 46 46" fill="none"><path d="M22.666 28.625C28.8792 28.625 33.916 25.3151 33.916 18.9192V6.125H11.416V18.9192C11.416 25.3151 16.4528 28.625 22.666 28.625ZM22.666 28.625V34.25M14.2285 39.875L17.6879 34.25H27.3934L31.1035 39.875H14.2285ZM33.916 22.0625V12.6875H41.416C41.416 18.9375 37.666 22.0625 33.916 22.0625ZM11.416 22.0625V12.6875H3.91602C3.91602 18.9375 7.66602 22.0625 11.416 22.0625Z" stroke="#0C1214" stroke-width="2"></path></symbol>
+    <symbol id="home-chain" viewBox="0 0 46 46" fill="none"><path d="M32.1406 8.9375C33.446 8.9375 34.6979 9.45605 35.6209 10.3791C36.5439 11.3021 37.0625 12.554 37.0625 13.8594C37.0625 15.1647 36.5439 16.4166 35.6209 17.3397C34.6979 18.2627 33.446 18.7812 32.1406 18.7812H27.2188V13.8594C27.2188 12.554 27.7373 11.3021 28.6603 10.3791C29.5834 9.45605 30.8353 8.9375 32.1406 8.9375Z" stroke="#0C1214" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M18.7812 18.7812H13.8594C12.554 18.7812 11.3021 18.2627 10.3791 17.3397C9.45605 16.4166 8.9375 15.1647 8.9375 13.8594C8.9375 12.554 9.45605 11.3021 10.3791 10.3791C11.3021 9.45605 12.554 8.9375 13.8594 8.9375C15.1647 8.9375 16.4166 9.45605 17.3397 10.3791C18.2627 11.3021 18.7812 12.554 18.7812 13.8594V18.7812Z" stroke="#0C1214" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M27.2188 27.2188H32.1406C33.446 27.2188 34.6979 27.7373 35.6209 28.6603C36.5439 29.5834 37.0625 30.8353 37.0625 32.1406C37.0625 33.446 36.5439 34.6979 35.6209 35.6209C34.6979 36.5439 33.446 37.0625 32.1406 37.0625C30.8353 37.0625 29.5834 36.5439 28.6603 35.6209C27.7373 34.6979 27.2188 33.446 27.2188 32.1406V27.2188Z" stroke="#0C1214" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.8594 37.0625C12.554 37.0625 11.3021 36.5439 10.3791 35.6209C9.45605 34.6979 8.9375 33.446 8.9375 32.1406C8.9375 30.8353 9.45605 29.5834 10.3791 28.6603C11.3021 27.7373 12.554 27.2188 13.8594 27.2188H18.7812V32.1406C18.7812 33.446 18.2627 34.6979 17.3397 35.6209C16.4166 36.5439 15.1647 37.0625 13.8594 37.0625Z" stroke="#0C1214" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M27.2188 18.7812H18.7812V27.2188H27.2188V18.7812Z" stroke="#0C1214" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+    <symbol id="home-reward-1" viewBox="0 0 91 90" fill="none"><path d="M26.7959 33.2439C27.0405 23.1236 35.3215 14.9961 45.5 14.9961C55.6859 14.9961 63.9648 23.1247 64.2094 33.246" stroke="#05E3F7" stroke-width="2.64706" stroke-linejoin="round"></path><path d="M63.5631 38.6104C61.4062 46.5632 54.1395 52.4111 45.4985 52.4111C36.9008 52.4111 29.6574 46.6098 27.4678 38.7109" stroke="#05E3F7" stroke-width="2.64706" stroke-linejoin="round"></path><path d="M45.0002 7.47266V11.7535" stroke="#05E3F7" stroke-width="2.64706" stroke-linejoin="round"></path><path d="M45.0002 16.6357V20.9166" stroke="#05E3F7" stroke-width="2.64706" stroke-linejoin="round"></path><path d="M51.721 14.1924H47.4402" stroke="#05E3F7" stroke-width="2.64706" stroke-linejoin="round"></path><path d="M42.5591 14.1924H38.2783" stroke="#05E3F7" stroke-width="2.64706" stroke-linejoin="round"></path><path d="M73.8516 25.4727V29.7535" stroke="#05E3F7" stroke-width="2.64706" stroke-linejoin="round"></path><path d="M73.8516 34.6357V38.9166" stroke="#05E3F7" stroke-width="2.64706" stroke-linejoin="round"></path><path d="M80.5721 32.1924H76.2913" stroke="#05E3F7" stroke-width="2.64706" stroke-linejoin="round"></path><path d="M71.4122 32.1924H67.1313" stroke="#05E3F7" stroke-width="2.64706" stroke-linejoin="round"></path><path d="M16.1458 25.4727V29.7535" stroke="#05E3F7" stroke-width="2.64706" stroke-linejoin="round"></path><path d="M16.1458 34.6357V38.9166" stroke="#05E3F7" stroke-width="2.64706" stroke-linejoin="round"></path><path d="M22.8665 32.1924H18.5857" stroke="#05E3F7" stroke-width="2.64706" stroke-linejoin="round"></path><path d="M13.7047 32.1924H9.42383" stroke="#05E3F7" stroke-width="2.64706" stroke-linejoin="round"></path><path d="M58.2986 25.64L64.12 17.2266" stroke="#05E3F7" stroke-width="2.64706" stroke-linecap="round" stroke-linejoin="round"></path><path d="M31.6989 25.64L25.8774 17.2266" stroke="#05E3F7" stroke-width="2.64706" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+    <symbol id="home-reward-2" viewBox="0 0 90 90" fill="none"><path d="M44.3599 45.5058C42.9655 42.5929 39.7773 35.6894 39.7773 33.4341C39.7773 30.5499 42.1152 28.2109 45.0016 28.2109C47.8879 28.2109 50.2226 30.5488 50.2226 33.4341C50.2226 35.6788 47.0652 42.5315 45.6602 45.4676" stroke="#05E3F7" stroke-width="2.64706" stroke-linejoin="round"></path><path d="M34.8664 35.4238C37.4806 36.6446 44.7844 45.8204 44.7844 45.8204C44.7844 45.8204 33.059 46.1094 30.4458 44.8875C27.8305 43.6667 26.7029 40.5591 27.9237 37.9448C29.1445 35.3317 32.2522 34.203 34.8664 35.4238Z" stroke="#05E3F7" stroke-width="2.64706" stroke-linecap="round" stroke-linejoin="round"></path><path d="M55.1352 35.4238C52.5189 36.6446 45.2151 45.8204 45.2151 45.8204C45.2151 45.8204 56.9405 46.1094 59.5558 44.8875C62.17 43.6667 63.2966 40.5591 62.0747 37.9448C60.856 35.3317 57.7494 34.203 55.1352 35.4238Z" stroke="#05E3F7" stroke-width="2.64706" stroke-linecap="round" stroke-linejoin="round"></path><path d="M23.3909 60.9062V82.5274H66.6078V60.9062" stroke="#05E3F7" stroke-width="2.64706" stroke-linejoin="round"></path><path d="M48.8293 56.4425H69.9443V45.8193H20.0547V56.4425H41.1592" stroke="#05E3F7" stroke-width="2.64706" stroke-linejoin="round"></path><path d="M41.3145 46.084V82.3762" stroke="#05E3F7" stroke-width="2.64706" stroke-linejoin="round"></path><path d="M48.6833 46.084V82.3762" stroke="#05E3F7" stroke-width="2.64706" stroke-linejoin="round"></path></symbol>
+    <symbol id="home-reward-3" viewBox="0 0 91 90" fill="none"><path d="M26.9741 34.8623V60.9337" stroke="#05E3F7" stroke-width="2.64706" stroke-linejoin="round"></path><path d="M39.3245 34.8623V60.9337" stroke="#05E3F7" stroke-width="2.64706" stroke-linejoin="round"></path><path d="M51.6768 34.8623V60.9337" stroke="#05E3F7" stroke-width="2.64706" stroke-linejoin="round"></path><path d="M64.0273 34.8633V60.9347" stroke="#05E3F7" stroke-width="2.64706" stroke-linejoin="round"></path><path d="M86.6179 72.6719H4.3833" stroke="#05E3F7" stroke-width="2.64706" stroke-linecap="round" stroke-linejoin="round"></path><path d="M20.7537 34.462H70.2748L70.277 29.1097L45.5248 17.3281L20.7537 29.0895V34.462Z" stroke="#05E3F7" stroke-width="2.64706" stroke-linecap="round" stroke-linejoin="round"></path><path d="M82.2641 65.8252H8.7373" stroke="#05E3F7" stroke-width="2.64706" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14.6333 51.2334V60.9343" stroke="#05E3F7" stroke-width="2.64706" stroke-linejoin="round"></path><path d="M21.8467 44.3564H9.98047V50.6734H21.8467" stroke="#05E3F7" stroke-width="2.64706" stroke-linejoin="round"></path><path d="M76.3884 51.2334V60.9343" stroke="#05E3F7" stroke-width="2.64706" stroke-linejoin="round"></path><path d="M69.1533 44.3564H81.0185V50.6734H69.1533" stroke="#05E3F7" stroke-width="2.64706" stroke-linejoin="round"></path></symbol>
+  </defs>
+</svg>
+
+<div class="min-h-dvh min-h-screen flex flex-col">
+
+  <!-- ============ HEADER (desktop) ============ -->
+  <header class="z-30 fixed left-0 top-0 right-0 w-full h-[64px] px-8 hidden md:flex flex-row items-center bg-primary">
+    <div class="w-full flex flex-row items-center gap-x-[30px]">
+      <svg class="shrink-0 w-[130px] h-[28px] text-white"><use href="#navi-logo"></use></svg>
+      <div class="w-full flex flex-row items-center gap-x-2 text-white">
+        <div class="group px-4 flex flex-row items-center gap-x-1 opacity-50 hover:opacity-100 transition-opacity duration-200 cursor-pointer">
+          <span class="font-bold">Features</span>
+        </div>
+        <div class="relative group">
+          <div class="group px-4 flex flex-row items-center gap-x-1 opacity-50 hover:opacity-100 transition-opacity duration-200 cursor-pointer">
+            <span>Destinations</span>
+            <svg class="size-4 group-hover:rotate-180 transition-transform duration-200"><use href="#common-dropdown"></use></svg>
+          </div>
+          <div class="dropdown-panel absolute left-1 top-[100%] pt-4 w-max text-font-primary">
+            <div class="flex flex-col bg-white rounded-[24px] border-[0.5px] border-[#4F596429] overflow-hidden" style="width:520px">
+              <div class="h-[60px] font-medium px-8 flex items-end">Popular destinations</div>
+              <div class="grid grid-cols-4 gap-2 px-4 py-2">
+                <button class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-us rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>United States</span></button>
+                <button class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-gb rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>United Kingdom</span></button>
+                <button class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-tr rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Turkey</span></button>
+                <button class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-th rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Thailand</span></button>
+                <button class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-es rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Spain</span></button>
+                <button class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-jp rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Japan</span></button>
+                <button class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-de rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Germany</span></button>
+                <button class="btn btn-secondary h-[69px] flex items-center px-3 rounded-[12px]"><span class="inline-flex"><span class="fi fi-it rounded-[3px]" style="font-size:24px"></span>&nbsp;</span><span>Italy</span></button>
+              </div>
+              <div class="shrink-0 h-[82px] border-t-[#4F596429] border-t-[0.5px] flex items-center justify-center">
+                <button class="btn btn-primary flex-center gap-x-1 font-bold text-[14px] w-[206px] h-[48px] rounded-full"><span>All Destinations</span><svg class="size-[18px]"><use href="#common-arrow"></use></svg></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="relative group">
+          <div class="group px-4 flex flex-row items-center gap-x-1 opacity-50 hover:opacity-100 transition-opacity duration-200 cursor-pointer">
+            <span title="Knowledge &amp; Community">Knowledge &amp; Community</span>
+            <svg class="size-4 group-hover:rotate-180 transition-transform duration-200"><use href="#common-dropdown"></use></svg>
+          </div>
+          <div class="dropdown-panel absolute left-1 top-[100%] pt-4 w-max text-font-primary">
+            <div class="flex flex-col bg-white rounded-[24px] border-[0.5px] border-[#4F596429] p-[10px]">
+              <a href="https://docs.roamfi.net/" target="_blank" class="btn btn-secondary w-[196px] h-[48px] px-4 text-left rounded-[8px] flex items-center">Docs</a>
+              <a href="https://www.roamfi.net/reward/rule" class="btn btn-secondary w-[196px] h-[48px] px-4 text-left rounded-[8px] flex items-center">Token Reward</a>
+            </div>
+          </div>
+        </div>
+        <div class="group px-4 flex flex-row items-center gap-x-1 opacity-50 hover:opacity-100 transition-opacity duration-200 cursor-pointer">
+          <span>Support</span>
+        </div>
+      </div>
+      <div class="ml-auto flex items-center gap-x-3">
+        <button class="btn w-[100px] h-[40px] rounded-full btn-outline-primary" onclick="document.getElementById('modal-login').classList.add('open')" style="color:#fff;border-color:#fff">Login</button>
+        <div class="relative group">
+          <button class="btn btn-brand flex-center w-[172px] h-10 gap-x-2 rounded-full"><span>Get the App</span><svg class="size-5"><use href="#navi-apple"></use></svg><svg class="size-5"><use href="#navi-google"></use></svg></button>
+          <div class="dropdown-panel absolute right-0 top-12 flex flex-col items-center gap-y-3 bg-white w-max px-8 py-8 rounded-[24px] shadow-lg text-font-primary">
+            <div class="flex flex-col items-center gap-y-[6px]">
+              <span class="text-[20px] font-medium">Get the RoamFi App</span>
+              <span class="text-font-tertiary">Scan the QR code to download the app</span>
+            </div>
+            <img alt="QR" width="178" height="178" src="https://bres.talex.world/static/cbfd7ebd-5a79-4aae-8f4a-af0dd3003b94.webp">
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- login modal (simplified) -->
+  <div id="modal-login" data-modal class="fixed inset-0 z-40 bg-black/50 items-center justify-center">
+    <div class="w-[440px] bg-white rounded-[24px] relative flex flex-col items-center p-8">
+      <button class="btn absolute top-8 right-8" onclick="document.getElementById('modal-login').classList.remove('open')"><svg class="size-6"><use href="#common-close"></use></svg></button>
+      <span class="text-[20px] font-medium">Sign in</span>
+      <div class="mt-[54px] w-full h-[54px] rounded-[8px] border border-[#4F596414] flex items-center gap-x-2 px-3">
+        <svg class="size-5"><use href="#common-email"></use></svg>
+        <input type="email" placeholder="email" class="outline-none w-full">
+      </div>
+      <span class="self-start mt-5 text-[14px] text-font-tertiary">Please enter your email to log in or register</span>
+      <button class="btn mt-8 btn-primary w-full h-[48px] rounded-full"><span class="font-bold">Continue</span></button>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <div class="w-full h-[662px] bg-primary relative overflow-hidden">
+      <div class="pt-[110px] h-full rf-wrap text-white flex flex-col relative">
+        <img alt="bg" width="610" height="610" class="md:absolute md:right-0 md:bottom-0" src="https://bres.talex.world/static/25d29ab1-7c02-47ac-beaf-bfdb82f50d29.png">
+        <div>
+          <div class="font-medium text-[48px]">One global eSIM.</div>
+          <div class="font-medium text-[48px]">Always online, Earn as You Go.</div>
+          <div class="text-[20px] leading-[30px]">Stay connected in <span class="font-bold text-brand">200+</span> destinations with pay-as-you-go or destination plans.</div>
+          <div class="text-[20px] leading-[30px]">Earn <span class="font-bold text-brand">$RF</span> token rewards every time you buy data.</div>
+        </div>
+        <button class="btn mt-7 w-full md:w-[412px] h-[76px]">
+          <div class="size-full flex items-center pl-[20px] pr-[10px] bg-white/[0.08] rounded-[48px]">
+            <svg class="size-[18px] text-white"><use href="#common-search"></use></svg>
+            <span class="text-[14px] ml-2">Where do you want to go?</span>
+            <div class="ml-auto size-[56px] rounded-full bg-brand flex-center"><svg class="size-6 text-font-primary"><use href="#common-arrow"></use></svg></div>
+          </div>
+        </button>
+        <div class="flex items-center gap-x-[30px] mt-[60px]">
+          <button class="btn btn-white w-[222px] h-[62px] gap-x-2 rounded-[10px] flex-center">
+            <svg class="size-[38px]"><use href="#common-apple"></use></svg>
+            <div class="flex flex-col items-start text-[14px]"><span>Download on</span><span class="font-medium">Apple Store</span></div>
+          </button>
+          <button class="btn btn-white w-[222px] h-[62px] gap-x-2 rounded-[10px] flex-center">
+            <svg class="size-[38px]" viewBox="0 0 32 32"><use href="#google-play-badge"></use></svg>
+            <div class="flex flex-col items-start text-[14px]"><span>Download on</span><span class="font-medium">Google Play</span></div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="py-[100px] md:py-[200px] rf-wrap flex flex-col gap-y-[100px] md:gap-y-[200px]">
+
+      <!-- ============ DESTINATIONS ============ -->
+      <section class="flex flex-col items-center gap-y-[70px]">
+        <div class="flex flex-col gap-y-[18px]">
+          <span class="font-medium text-center text-[40px]">Single Global eSIM™. 200+ destinations</span>
+          <span class="text-center text-[20px] text-font-tertiary">Change countries, not eSIMs or plans. RoamFi switches between countries and networks automatically.</span>
+        </div>
+        <div class="w-full grid grid-cols-4 gap-[26px]">
+          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-us rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">United States</span></button>
+          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-gb rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">United Kingdom</span></button>
+          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-tr rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Turkey</span></button>
+          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-th rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Thailand</span></button>
+          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-es rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Spain</span></button>
+          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-jp rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Japan</span></button>
+          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-de rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Germany</span></button>
+          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-it rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Italy</span></button>
+          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-fr rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">France</span></button>
+          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-ca rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Canada</span></button>
+          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-cn rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">China</span></button>
+          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-au rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Australia</span></button>
+          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-kr rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">South Korea</span></button>
+          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-ru rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Russia</span></button>
+          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-ua rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Ukraine</span></button>
+          <button class="btn btn-outline-secondary w-full h-[104px] px-4 rounded-[16px] flex items-center justify-start gap-x-[10px]"><span class="shrink-0 inline-flex"><span class="fi fi-sg rounded-[3px]" style="font-size:38px"></span>&nbsp;</span><span class="text-[18px] text-left">Singapore</span></button>
+        </div>
+        <button class="btn btn-primary flex-center gap-x-1 font-bold text-[14px] w-[206px] h-[48px] rounded-full"><span>All Destinations</span><svg class="size-[18px]"><use href="#common-arrow"></use></svg></button>
+      </section>
+
+      <!-- ============ WHY CHOOSE ============ -->
+      <section class="flex flex-col items-center gap-y-[70px]">
+        <div class="flex flex-col font-medium text-[40px] text-center max-w-[600px]">
+          <span>Why do more and more people choose or switch to RoamFi?</span>
+        </div>
+        <div class="w-full flex items-center justify-between">
+          <div class="max-w-[220px] flex flex-col items-center gap-y-4">
+            <div class="size-[100px] flex items-center justify-center bg-tertiary rounded-full"><svg class="size-[45px]"><use href="#home-earth"></use></svg></div>
+            <div class="flex flex-col items-center gap-y-[10px]"><span class="text-center">200+ Countries</span><span class="text-font-tertiary text-[14px] text-center">Stay connected worldwide with a single eSIM profile</span></div>
+          </div>
+          <div class="max-w-[220px] flex flex-col items-center gap-y-4">
+            <div class="size-[100px] flex items-center justify-center bg-tertiary rounded-full"><svg class="size-[45px]"><use href="#home-data"></use></svg></div>
+            <div class="flex flex-col items-center gap-y-[10px]"><span class="text-center">Plan Your Way</span><span class="text-font-tertiary text-[14px] text-center">Pay-as-you-go or multiple packages</span></div>
+          </div>
+          <div class="max-w-[220px] flex flex-col items-center gap-y-4">
+            <div class="size-[100px] flex items-center justify-center bg-tertiary rounded-full"><svg class="size-[45px]"><use href="#home-reward"></use></svg></div>
+            <div class="flex flex-col items-center gap-y-[10px]"><span class="text-center">Earn $RF Tokens</span><span class="text-font-tertiary text-[14px] text-center">Get rewards for every MB you use</span></div>
+          </div>
+          <div class="max-w-[220px] flex flex-col items-center gap-y-4">
+            <div class="size-[100px] flex items-center justify-center bg-tertiary rounded-full"><svg class="size-[45px]"><use href="#home-chain"></use></svg></div>
+            <div class="flex flex-col items-center gap-y-[10px]"><span class="text-center">Your Voice Matters</span><span class="text-font-tertiary text-[14px] text-center">Every dollar is on-chain, every user decide the product future</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ STEPS ============ -->
+      <div class="flex flex-col gap-y-[70px]">
+        <div class="flex flex-col items-center gap-y-[18px]">
+          <span class="font-medium text-[46px]">Start just in a few steps</span>
+          <span class="text-[20px] text-font-tertiary">How to use RoamFi</span>
+        </div>
+        <div class="grid grid-cols-2 gap-8">
+          <div class="flex flex-col gap-y-8">
+            <img alt="cover" width="621" height="369" class="w-full object-cover rounded-[24px]" src="https://bres.talex.world/static/8cec4f2a-3a96-424b-9003-978d39b9d2f3.png">
+            <div class="flex flex-col gap-y-[18px]"><span class="font-bold text-[24px]">Step 1 — Get the App</span><span class="text-[20px] text-font-secondary">Download the RoamFi app and install your Flex eSIM to enjoy global connection without switching eSIM.</span></div>
+          </div>
+          <div class="flex flex-col gap-y-8">
+            <img alt="cover" width="621" height="369" class="w-full object-cover rounded-[24px]" src="https://bres.talex.world/static/b6440507-929f-4074-891f-3fb0b2a07468.png">
+            <div class="flex flex-col gap-y-[18px]"><span class="font-bold text-[24px]">Step 2 — Add a Plan</span><span class="text-[20px] text-font-secondary">Choose a RoamFi Fix plan or add RoamFi Flex balance.</span></div>
+          </div>
+          <div class="flex flex-col gap-y-8">
+            <img alt="cover" width="621" height="369" class="w-full object-cover rounded-[24px]" src="https://bres.talex.world/static/23e69333-4d57-42bd-8c2c-cb4f2bf94520.png">
+            <div class="flex flex-col gap-y-[18px]"><span class="font-bold text-[24px]">Step 3 — Connect Seamlessly</span><span class="text-[20px] text-font-secondary">Switch your data line to the RoamFi Fix eSIM, or let Flex work automatically when you arrive at your destination.</span></div>
+          </div>
+          <div class="flex flex-col gap-y-8">
+            <img alt="cover" width="621" height="369" class="w-full object-cover rounded-[24px]" src="https://bres.talex.world/static/122b6ec5-1ecc-4c62-8f9b-a956e99272e7.png">
+            <div class="flex flex-col gap-y-[18px]"><span class="font-bold text-[24px]">Step 4 — Earn &amp; Participate</span><span class="text-[20px] text-font-secondary">Earn $RF token rewards with every spend and take part in RoamFi governance.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ NEWS ============ -->
+      <div class="flex flex-col gap-y-[70px]">
+        <div class="flex flex-col items-center gap-y-[18px]">
+          <span class="font-medium text-[46px]">News</span>
+          <span class="text-[20px] text-font-tertiary text-center">Project updates, launches &amp; community announcements</span>
+        </div>
+        <div class="flex flex-col items-center gap-y-[18px]">
+          <div class="w-full flex items-center justify-center relative h-[260px]">
+            <img alt="news" width="768" height="432" class="w-[50%] h-auto absolute left-0 rounded-[20px]" src="https://bres.talex.world/static/6cf08f71-4f62-453a-be8d-321cd8441875.png">
+            <img alt="news" width="768" height="432" class="w-[50%] h-auto absolute right-0 rounded-[20px]" src="https://bres.talex.world/static/a14ded97-252b-428a-a284-5cf25b1d41d0.png">
+            <button class="btn w-[60%] relative z-10">
+              <img alt="news featured" width="768" height="432" class="rounded-[20px] w-full" src="https://bres.talex.world/static/5aacdd2c-2f75-4bfa-9b5b-0d70b98244b6.png">
+            </button>
+          </div>
+          <span class="max-w-[60%] font-medium text-[20px] text-center">RWB: Tokenizing Real-World Business to Open a New Paradigm for RWA</span>
+        </div>
+      </div>
+
+      <!-- ============ TOKEN BLOCK ============ -->
+      <div class="flex flex-col items-center justify-center gap-y-[58px] w-full min-h-[480px] rounded-[24px] px-[80px] py-[60px] bg-primary">
+        <div class="flex flex-col items-center gap-y-[18px]">
+          <span class="text-center font-medium text-white text-[46px]">Tokens Replacing Loyalty Points</span>
+          <span class="text-center text-font-secondary text-[20px]" style="color:#B9BEC2">From spending to gaining</span>
+        </div>
+        <div class="w-full flex items-start justify-between">
+          <div class="w-[220px] flex flex-col items-center justify-center gap-y-4">
+            <svg class="size-[90px]"><use href="#home-reward-1"></use></svg>
+            <div class="flex flex-col items-center justify-center gap-y-[10px]">
+              <span class="text-white font-medium text-[18px]">Token as Points</span>
+              <span class="text-[14px] text-center" style="color:#B9BEC2">Earn $RF for usage/referrals.</span>
+            </div>
+          </div>
+          <div class="w-[220px] flex flex-col items-center justify-center gap-y-4">
+            <svg class="size-[90px]"><use href="#home-reward-2"></use></svg>
+            <div class="flex flex-col items-center justify-center gap-y-[10px]">
+              <span class="text-white font-medium text-[18px]">+20% Conversion Bonus</span>
+              <span class="text-[14px] text-center" style="color:#B9BEC2">Convert $RF to $RUSD with bonus.</span>
+            </div>
+          </div>
+          <div class="w-[220px] flex flex-col items-center justify-center gap-y-4">
+            <svg class="size-[90px]"><use href="#home-reward-3"></use></svg>
+            <div class="flex flex-col items-center justify-center gap-y-[10px]">
+              <span class="text-white font-medium text-[18px]">Transparent Treasury</span>
+              <span class="text-[14px] text-center" style="color:#B9BEC2">Join our community: on-chain treasury, open voting, full transparency.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="mt-auto bg-primary py-20">
+    <div class="rf-wrap text-font-secondary flex flex-col gap-y-10" style="color:#9AA0A6">
+      <div class="flex">
+        <div class="flex-[1_0_0]"><svg class="w-[100px] h-[22px] text-white"><use href="#navi-logo"></use></svg></div>
+        <div class="flex-[2_0_0] flex gap-x-[118px]">
+          <div class="flex flex-col gap-y-[40px]">
+            <span class="text-[14px] font-medium text-white">Popular Destination</span>
+            <div class="flex flex-col gap-y-6">
+              <a class="link-secondary text-[14px]" href="https://www.roamfi.net/plan/JP">Japan</a>
+              <a class="link-secondary text-[14px]" href="https://www.roamfi.net/plan/KR">South Korea</a>
+              <a class="link-secondary text-[14px]" href="https://www.roamfi.net/plan/US">United Kindom</a>
+              <a class="link-secondary text-[14px]" href="https://www.roamfi.net/plan/CA">Canada</a>
+              <a class="link-secondary text-[14px]" href="https://www.roamfi.net/plan/CN">China</a>
+              <a class="link-secondary text-[14px] underline" href="https://www.roamfi.net/destinations">See all destinations</a>
+            </div>
+          </div>
+          <div class="flex flex-col gap-y-[40px]">
+            <span class="text-[14px] font-medium text-white">Product</span>
+            <div class="flex flex-col gap-y-6">
+              <a class="link-secondary text-[14px]" href="https://www.roamfi.net/">Features</a>
+              <a class="link-secondary text-[14px]" href="https://www.roamfi.net/reward/rule">Token Rewards</a>
+              <a class="link-secondary text-[14px]" href="https://docs.roamfi.net" target="_blank">Whitepaper</a>
+              <a class="link-secondary text-[14px]" href="https://www.roamfi.net/refund-policy">Refund Policy</a>
+              <a class="link-secondary text-[14px]" href="https://www.roamfi.net/policy">Privacy Policy</a>
+              <a class="link-secondary text-[14px]" href="https://www.roamfi.net/terms">Terms of Services</a>
+              <a class="link-secondary text-[14px]" href="https://www.roamfi.net/payment-methods">Payment Methods</a>
+              <a class="link-secondary text-[14px]" href="https://www.roamfi.net/shipping-policy">Shipping Policy</a>
+            </div>
+          </div>
+          <div class="flex flex-col gap-y-[40px]">
+            <span class="text-[14px] font-medium text-white">Resources</span>
+            <div class="flex flex-col gap-y-6">
+              <a class="link-secondary text-[14px]" href="https://www.roamfi.net/support">Support</a>
+              <a class="link-secondary text-[14px]" href="https://www.roamfi.net/contact">Contact Us</a>
+              <a class="link-secondary text-[14px]" href="https://www.roamfi.net/about">About Us</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="w-full h-[0.5px] bg-white/[0.08]"></div>
+      <div class="flex items-center justify-between">
+        <span>©2025 Powered by RoamFi, All rights reserved</span>
+        <div class="shrink-0 flex items-center gap-x-[28px] text-white">
+          <button class="btn"><svg class="size-5"><use href="#navi-twitter"></use></svg></button>
+          <button class="btn"><svg class="size-5"><use href="#navi-telegram"></use></svg></button>
+          <button class="btn"><svg class="size-[26px]"><use href="#navi-binance"></use></svg></button>
+          <button class="btn"><svg class="size-[22px]"><use href="#navi-facebook"></use></svg></button>
+          <button class="btn"><svg class="size-[22px]"><use href="#navi-instagram"></use></svg></button>
+          <button class="btn"><svg class="size-[22px]"><use href="#navi-tiktok"></use></svg></button>
+          <button class="btn"><svg class="size-[22px]"><use href="#navi-youtube"></use></svg></button>
+          <button class="btn"><svg class="size-5"><use href="#navi-linkin"></use></svg></button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
