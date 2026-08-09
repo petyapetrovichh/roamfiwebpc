@@ -193,7 +193,7 @@
         <div onclick="showPage('revenue-sharing')" class="group px-4 flex flex-row items-center gap-x-1 opacity-50 hover:opacity-100 transition-opacity duration-200 cursor-pointer">
           <span>Revenue Sharing</span>
         </div>
-        <div onclick="showPage('home','faq')" class="group px-4 flex flex-row items-center gap-x-1 opacity-50 hover:opacity-100 transition-opacity duration-200 cursor-pointer">
+        <div onclick="showPage('faq')" class="group px-4 flex flex-row items-center gap-x-1 opacity-50 hover:opacity-100 transition-opacity duration-200 cursor-pointer">
           <span>FAQ</span>
         </div>
         <div class="group px-4 flex flex-row items-center gap-x-1 opacity-50 hover:opacity-100 transition-opacity duration-200 cursor-pointer">
@@ -444,7 +444,7 @@
             <span class="text-font-secondary text-[15px] leading-[24px]">Your balance updates instantly after each eSIM purchase by other users globally. You can spend it on future eSIMs or cash it out from your account at any time.</span>
           </div>
         </div>
-        <button class="btn btn-primary self-center flex-center gap-x-1 font-bold text-[14px] w-[206px] h-[48px] rounded-full"><span>See all FAQs</span><svg class="size-[18px]"><use href="#common-arrow"></use></svg></button>
+        <button onclick="showPage('faq')" class="btn btn-primary self-center flex-center gap-x-1 font-bold text-[14px] w-[206px] h-[48px] rounded-full"><span>See all FAQs</span><svg class="size-[18px]"><use href="#common-arrow"></use></svg></button>
       </div>
 
     </div>
@@ -984,6 +984,747 @@
     </div>
   </main>
 
+  <!-- ============ FAQ PAGE ============ -->
+  <main id="page-faq" class="page" style="background:#F7F8F9;display:none">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does revenue sharing work at RoamFi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On every eSIM purchase, half of RoamFi's net margin (after subtracting the provider cost) doesn't go to the company — it goes into a shared pool that's automatically distributed to earlier buyers. Example: a $10 purchase with a $5 cost price leaves a $5 margin → $2.5 stays with the company, $2.5 goes into the distribution pool. This isn't a referral bonus — it's built into every transaction."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who receives a share from the Revenue Sharing Pool?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Anyone who has purchased an eSIM from RoamFi within the last 365 days. Your share doesn't depend on who referred whom. Distribution happens across all active buyers, weighted by which of the 4 time windows they fall into."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a referral link to get a share?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, participation is fully automatic. Simply buying an eSIM enters you into the pool for 365 days — no link-sharing, tracking, or separate account is required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When does the payout land after a purchase?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Instantly, right after every purchase made by any user on the platform — not once a day or once a month. Your balance in the RoamFi app updates in real time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What do the time windows (24h/7 days/30 days/365 days) mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The pool is split into 4 windows based on how recently a buyer purchased, relative to the moment of a new sale: 40% of the pool goes to buyers from the last 24 hours, 30% to buyers from 1–7 days ago, 20% to buyers from 8–30 days ago, and 10% to buyers from 31–365 days ago. The more recent the purchase, the higher the weight, but eligibility lasts the full 365 days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Example: I bought my eSIM 17 days ago — how much do I get from someone else's purchase right now?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A purchase from 17 days ago falls into the \"8–30 days\" window, which receives 20% of the pool on every new sale. The exact amount depends on how many other people are also in that window at the time of the sale — the 20% is split among all of them, not paid out to one person."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is the share split between multiple people inside the same time window?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Within a window, the payout is split in proportion to how much each person spent on their purchases in that window — not split evenly. Example: 5 people are in the \"8–30 days\" window, having spent $100 combined, and $20 of that was your purchase → you get 20% of that window's 20% pool share (i.e., 1/5 of the amount allocated to that window)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I withdraw my accumulated balance?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Since money from the Revenue Sharing Pool is credited directly to your account's USD balance, you can either spend it within RoamFi or withdraw it to fiat or crypto from the app. No additional KYC is required beyond standard email registration."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is RoamFi different from Airalo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Airalo is a standard eSIM marketplace. RoamFi runs a revenue-sharing model for all users on top of the same core eSIM service, paying out from all future platform sales for 365 days after every purchase. Core functionality (coverage, QR-code activation) is similar between the two — the difference is in the benefits for the eSIM buyer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is RoamFi different from Holafly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Holafly mainly sells unlimited plans for a single country. RoamFi offers Flex mode, where one eSIM works across 200+ countries without reinstalling when you change region, plus a revenue-sharing model for all users on every purchase. RoamFi doesn't have a direct unlimited plan at Holafly's price point — compare specific plans against the current pricing table."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are RoamFi and Roamify the same service?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, these are different companies. RoamFi is an eSIM platform within the TaleX ecosystem with a revenue-sharing model for all users. Roamify is a separate, independent eSIM/API provider unrelated to RoamFi. Similar names aren't an indicator of shared ownership or service quality."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which eSIM provider should I choose instead of regular roaming?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For a single short trip to one country, the difference between providers (Airalo, Holafly, RoamFi, Roamify) mostly comes down to price per GB. For frequent trips across multiple countries, a provider with one eSIM covering multiple regions without reinstalling is more convenient — that's RoamFi's Flex mode."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is RoamFi a legitimate service?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes: RoamFi is a joint venture between Japan eSIM Co., Ltd. and TaleX Protocol, part of the TaleX ecosystem, with email-only registration and no document requirements (no KYC). The full purchase history of every user is publicly visible in real time on the website and in the app as part of the revenue sharing program — this is open data, not a closed internal system."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who is behind RoamFi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "RoamFi was launched by Japan eSIM Co., Ltd. together with TaleX Protocol, as part of the TaleX ecosystem, which also includes ViewsCall and the TaleX content app. This isn't an anonymous project. Japan eSIM Co., Ltd. is one of the largest eSIM companies in Japan, giving RoamFi an operational foundation beyond just a brand name."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if RoamFi support doesn't respond?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The RoamFi app has a support contact form for issues with activation, payment, or balance. For urgent technical issues (no connection, no data showing), check your phone's Data Roaming and Allow Data Switching settings first — this resolves most cases without waiting on a support reply."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is RoamFi good for digital nomads?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, thanks to Flex mode: one eSIM, installed once, keeps working as you move between 200+ countries without reinstalling. This solves the core pain point of a nomad's routine: not having to buy a new eSIM in every new country."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use RoamFi as a backup connection if my main SIM is unavailable?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Since the eSIM can be installed ahead of time and activates on arrival, you can keep a RoamFi eSIM as a backup data channel for issues with your local SIM or carrier, without a physical card swap."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is RoamFi suitable for a family trip with multiple people?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Each device needs its own eSIM — a RoamFi eSIM can't be transferred between devices or shared across multiple phones on one profile. For a family with several phones, each device needs its own separate installation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which eSIM plan should I choose for a trip to Japan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For a single-country trip with a fixed duration, a Fix plan with a fresh eSIM install for that trip works well. For frequent trips to Japan and elsewhere, a Flex balance — which never expires and doesn't require reinstalling — is the better fit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does RoamFi work across all of Europe on one eSIM?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Flex mode covers all supported European countries on a single eSIM profile, with no reinstalling required when crossing borders within the coverage list. Check the current country list on the plans page before your trip."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which eSIM plan should I choose for a trip to the US?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A Fix plan is available for a specific US trip. Some Fix eSIMs in certain regions (including some US plans) come with a phone number, which you can check in your device settings — this isn't included by default with the standard data-only eSIM."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I install and activate a RoamFi eSIM?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Setup takes 3 steps: download the RoamFi app, register with your email and confirmation code, then install the eSIM by scanning a QR code or entering the activation code manually over Wi-Fi with Airplane Mode off. After that, enable Data Roaming and Allow Data Switching in your phone's settings."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between Flex and Fix on RoamFi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Flex is one eSIM, installed once, that keeps working across 200+ countries without reinstalling, and its balance never expires. Fix requires a new eSIM install for every new trip and is tied to a specific region and validity period."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I check if my phone supports eSIM?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Dial *#06# on your phone: if an EID appears, your device supports eSIM. If only an MEID or SEID shows up, it doesn't. On iPhone, you can also check SIM lock status under Settings → General → About. On Android, under Settings → About Phone → SIM Status."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should I do if my RoamFi eSIM won't connect or shows no data usage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In most cases, the cause is Data Roaming or Allow Data Switching being turned off in your phone's cellular settings. Check both toggles first, before contacting support."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does RoamFi support calls or SMS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, the standard RoamFi eSIM is data-only, with no voice calls or SMS. A few specific destinations (Philippines SMART, US T-Mobile, Guam IT&E, Vietnam Vietnamobile) include a phone number as an exception — this isn't the case across all countries."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I transfer a RoamFi eSIM to another device?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, each eSIM is tied to one device for a single use and can't be reinstalled once removed. Don't delete an active eSIM before its validity period ends — doing so causes permanent loss of access."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long do I have to install my eSIM after purchase?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "30 days from the eSIM's issue date to install and scan the QR code onto your device. After that window, the eSIM becomes invalid."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I check my remaining balance and data usage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your Flex balance and current package's data usage are visible in the RoamFi app at any time, with no need to contact support."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does my Flex balance expire if I don't use it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, Flex balance has no expiration date and never expires. This differs from Fix plans, which are tied to a specific trip duration."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is eSIM different from regular carrier roaming?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An eSIM is a built-in chip that remotely downloads a carrier profile — no physical SIM card, and no roaming charges from your home carrier. Switching carriers or countries happens in your phone's settings, not at a store or carrier counter."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need identity verification (KYC) to use RoamFi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, registration only requires an email address and confirmation code — no document upload. This is a lower barrier to entry than services that require passport details for a physical SIM card."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is RF Bonus?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "RF Bonus is RoamFi's reward token, earned on purchases and referrals — like a loyalty program, except instead of points that expire inside the app, you get an asset with real market value that can be exchanged."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I earn RF Bonus?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "RF Bonus is credited automatically on every eSIM data purchase and when you refer new users. There's nothing separate to apply for or request — it lands on your balance on its own."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is RF Bonus the same as a Revenue Sharing Pool share?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, these are two separate mechanisms. The Revenue Sharing Pool is a share of the company's net margin, split among recent buyers by time window. RF Bonus is a separate reward for the purchase or referral itself, unrelated to other users' pool distributions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What can I do with RF Bonus?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can convert RF Bonus to your USD balance with a +20% conversion bonus, or withdraw it to a crypto wallet for external trading — it's not locked to a single store. Inside the app itself, RF Bonus isn't spent directly: converting it to your USD balance is how it gets used."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I exchange RF Bonus for real money?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Through the conversion feature in the RoamFi app: RF Bonus converts to your USD balance with a +20% bonus, and that USD balance can then be withdrawn as regular funds."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does RF Bonus expire if I don't use it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, unlike traditional loyalty points, RF Bonus has no expiration date. It stays on your balance until you choose to use or convert it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a crypto wallet to earn RF Bonus?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, RF Bonus is credited and held directly in your RoamFi app account. A separate external wallet isn't required for basic earning and holding."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where can I find the exact RF Bonus reward rules?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The full rules — exactly how much you earn per purchase and per referral — are published on a dedicated page: roamfi.net/reward/rule. This FAQ only covers the general mechanics."
+      }
+    }
+  ]
+}
+    </script>
+    <div style="max-width:900px;margin:0 auto;padding:150px 32px 120px;" class="flex flex-col gap-y-[70px]">
+
+      <div class="flex flex-col items-center gap-y-4">
+        <span class="font-medium text-[46px] text-center">Frequently Asked Questions</span>
+        <span class="text-[18px] text-font-tertiary text-center">Everything about eSIMs, coverage, and how Revenue Sharing works</span>
+      </div>
+
+      <div class="flex flex-col gap-y-6">
+        <span class="font-bold text-[24px]">1. Revenue Sharing</span>
+        <div class="flex flex-col gap-y-3">
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(1)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">How does revenue sharing work at RoamFi?</span>
+              <svg id="faq-chevron-1" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-1" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">On every eSIM purchase, half of RoamFi&#x27;s net margin (after subtracting the provider cost) doesn&#x27;t go to the company — it goes into a shared pool that&#x27;s automatically distributed to earlier buyers. Example: a $10 purchase with a $5 cost price leaves a $5 margin → $2.5 stays with the company, $2.5 goes into the distribution pool. This isn&#x27;t a referral bonus — it&#x27;s built into every transaction.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(2)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">Who receives a share from the Revenue Sharing Pool?</span>
+              <svg id="faq-chevron-2" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-2" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">Anyone who has purchased an eSIM from RoamFi within the last 365 days. Your share doesn&#x27;t depend on who referred whom. Distribution happens across all active buyers, weighted by which of the 4 time windows they fall into.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(3)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">Do I need a referral link to get a share?</span>
+              <svg id="faq-chevron-3" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-3" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">No, participation is fully automatic. Simply buying an eSIM enters you into the pool for 365 days — no link-sharing, tracking, or separate account is required.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(4)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">When does the payout land after a purchase?</span>
+              <svg id="faq-chevron-4" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-4" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">Instantly, right after every purchase made by any user on the platform — not once a day or once a month. Your balance in the RoamFi app updates in real time.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(5)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">What do the time windows (24h/7 days/30 days/365 days) mean?</span>
+              <svg id="faq-chevron-5" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-5" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">The pool is split into 4 windows based on how recently a buyer purchased, relative to the moment of a new sale: 40% of the pool goes to buyers from the last 24 hours, 30% to buyers from 1–7 days ago, 20% to buyers from 8–30 days ago, and 10% to buyers from 31–365 days ago. The more recent the purchase, the higher the weight, but eligibility lasts the full 365 days.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(6)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">Example: I bought my eSIM 17 days ago — how much do I get from someone else&#x27;s purchase right now?</span>
+              <svg id="faq-chevron-6" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-6" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">A purchase from 17 days ago falls into the &quot;8–30 days&quot; window, which receives 20% of the pool on every new sale. The exact amount depends on how many other people are also in that window at the time of the sale — the 20% is split among all of them, not paid out to one person.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(7)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">How is the share split between multiple people inside the same time window?</span>
+              <svg id="faq-chevron-7" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-7" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">Within a window, the payout is split in proportion to how much each person spent on their purchases in that window — not split evenly. Example: 5 people are in the &quot;8–30 days&quot; window, having spent $100 combined, and $20 of that was your purchase → you get 20% of that window&#x27;s 20% pool share (i.e., 1/5 of the amount allocated to that window).</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(8)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">How do I withdraw my accumulated balance?</span>
+              <svg id="faq-chevron-8" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-8" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">Since money from the Revenue Sharing Pool is credited directly to your account&#x27;s USD balance, you can either spend it within RoamFi or withdraw it to fiat or crypto from the app. No additional KYC is required beyond standard email registration.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-y-6">
+        <span class="font-bold text-[24px]">2. Comparing RoamFi to Other Providers</span>
+        <div class="flex flex-col gap-y-3">
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(9)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">How is RoamFi different from Airalo?</span>
+              <svg id="faq-chevron-9" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-9" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">Airalo is a standard eSIM marketplace. RoamFi runs a revenue-sharing model for all users on top of the same core eSIM service, paying out from all future platform sales for 365 days after every purchase. Core functionality (coverage, QR-code activation) is similar between the two — the difference is in the benefits for the eSIM buyer.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(10)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">How is RoamFi different from Holafly?</span>
+              <svg id="faq-chevron-10" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-10" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">Holafly mainly sells unlimited plans for a single country. RoamFi offers Flex mode, where one eSIM works across 200+ countries without reinstalling when you change region, plus a revenue-sharing model for all users on every purchase. RoamFi doesn&#x27;t have a direct unlimited plan at Holafly&#x27;s price point — compare specific plans against the current pricing table.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(11)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">Are RoamFi and Roamify the same service?</span>
+              <svg id="faq-chevron-11" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-11" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">No, these are different companies. RoamFi is an eSIM platform within the TaleX ecosystem with a revenue-sharing model for all users. Roamify is a separate, independent eSIM/API provider unrelated to RoamFi. Similar names aren&#x27;t an indicator of shared ownership or service quality.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(12)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">Which eSIM provider should I choose instead of regular roaming?</span>
+              <svg id="faq-chevron-12" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-12" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">For a single short trip to one country, the difference between providers (Airalo, Holafly, RoamFi, Roamify) mostly comes down to price per GB. For frequent trips across multiple countries, a provider with one eSIM covering multiple regions without reinstalling is more convenient — that&#x27;s RoamFi&#x27;s Flex mode.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-y-6">
+        <span class="font-bold text-[24px]">3. Legitimacy and Trust</span>
+        <div class="flex flex-col gap-y-3">
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(13)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">Is RoamFi a legitimate service?</span>
+              <svg id="faq-chevron-13" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-13" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">Yes: RoamFi is a joint venture between Japan eSIM Co., Ltd. and TaleX Protocol, part of the TaleX ecosystem, with email-only registration and no document requirements (no KYC). The full purchase history of every user is publicly visible in real time on the website and in the app as part of the revenue sharing program — this is open data, not a closed internal system.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(14)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">Who is behind RoamFi?</span>
+              <svg id="faq-chevron-14" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-14" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">RoamFi was launched by Japan eSIM Co., Ltd. together with TaleX Protocol, as part of the TaleX ecosystem, which also includes ViewsCall and the TaleX content app. This isn&#x27;t an anonymous project. Japan eSIM Co., Ltd. is one of the largest eSIM companies in Japan, giving RoamFi an operational foundation beyond just a brand name.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(15)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">What if RoamFi support doesn&#x27;t respond?</span>
+              <svg id="faq-chevron-15" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-15" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">The RoamFi app has a support contact form for issues with activation, payment, or balance. For urgent technical issues (no connection, no data showing), check your phone&#x27;s Data Roaming and Allow Data Switching settings first — this resolves most cases without waiting on a support reply.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-y-6">
+        <span class="font-bold text-[24px]">4. Use Cases</span>
+        <div class="flex flex-col gap-y-3">
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(16)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">Is RoamFi good for digital nomads?</span>
+              <svg id="faq-chevron-16" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-16" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">Yes, thanks to Flex mode: one eSIM, installed once, keeps working as you move between 200+ countries without reinstalling. This solves the core pain point of a nomad&#x27;s routine: not having to buy a new eSIM in every new country.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(17)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">Can I use RoamFi as a backup connection if my main SIM is unavailable?</span>
+              <svg id="faq-chevron-17" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-17" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">Yes. Since the eSIM can be installed ahead of time and activates on arrival, you can keep a RoamFi eSIM as a backup data channel for issues with your local SIM or carrier, without a physical card swap.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(18)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">Is RoamFi suitable for a family trip with multiple people?</span>
+              <svg id="faq-chevron-18" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-18" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">Each device needs its own eSIM — a RoamFi eSIM can&#x27;t be transferred between devices or shared across multiple phones on one profile. For a family with several phones, each device needs its own separate installation.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-y-6">
+        <span class="font-bold text-[24px]">5. Top Destinations</span>
+        <div class="flex flex-col gap-y-3">
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(19)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">Which eSIM plan should I choose for a trip to Japan?</span>
+              <svg id="faq-chevron-19" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-19" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">For a single-country trip with a fixed duration, a Fix plan with a fresh eSIM install for that trip works well. For frequent trips to Japan and elsewhere, a Flex balance — which never expires and doesn&#x27;t require reinstalling — is the better fit.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(20)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">Does RoamFi work across all of Europe on one eSIM?</span>
+              <svg id="faq-chevron-20" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-20" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">Yes, Flex mode covers all supported European countries on a single eSIM profile, with no reinstalling required when crossing borders within the coverage list. Check the current country list on the plans page before your trip.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(21)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">Which eSIM plan should I choose for a trip to the US?</span>
+              <svg id="faq-chevron-21" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-21" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">A Fix plan is available for a specific US trip. Some Fix eSIMs in certain regions (including some US plans) come with a phone number, which you can check in your device settings — this isn&#x27;t included by default with the standard data-only eSIM.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-y-6">
+        <span class="font-bold text-[24px]">6. Technical Questions</span>
+        <div class="flex flex-col gap-y-3">
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(22)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">How do I install and activate a RoamFi eSIM?</span>
+              <svg id="faq-chevron-22" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-22" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">Setup takes 3 steps: download the RoamFi app, register with your email and confirmation code, then install the eSIM by scanning a QR code or entering the activation code manually over Wi-Fi with Airplane Mode off. After that, enable Data Roaming and Allow Data Switching in your phone&#x27;s settings.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(23)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">What&#x27;s the difference between Flex and Fix on RoamFi?</span>
+              <svg id="faq-chevron-23" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-23" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">Flex is one eSIM, installed once, that keeps working across 200+ countries without reinstalling, and its balance never expires. Fix requires a new eSIM install for every new trip and is tied to a specific region and validity period.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(24)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">How do I check if my phone supports eSIM?</span>
+              <svg id="faq-chevron-24" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-24" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">Dial *#06# on your phone: if an EID appears, your device supports eSIM. If only an MEID or SEID shows up, it doesn&#x27;t. On iPhone, you can also check SIM lock status under Settings → General → About. On Android, under Settings → About Phone → SIM Status.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(25)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">What should I do if my RoamFi eSIM won&#x27;t connect or shows no data usage?</span>
+              <svg id="faq-chevron-25" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-25" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">In most cases, the cause is Data Roaming or Allow Data Switching being turned off in your phone&#x27;s cellular settings. Check both toggles first, before contacting support.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(26)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">Does RoamFi support calls or SMS?</span>
+              <svg id="faq-chevron-26" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-26" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">No, the standard RoamFi eSIM is data-only, with no voice calls or SMS. A few specific destinations (Philippines SMART, US T-Mobile, Guam IT&amp;E, Vietnam Vietnamobile) include a phone number as an exception — this isn&#x27;t the case across all countries.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(27)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">Can I transfer a RoamFi eSIM to another device?</span>
+              <svg id="faq-chevron-27" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-27" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">No, each eSIM is tied to one device for a single use and can&#x27;t be reinstalled once removed. Don&#x27;t delete an active eSIM before its validity period ends — doing so causes permanent loss of access.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(28)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">How long do I have to install my eSIM after purchase?</span>
+              <svg id="faq-chevron-28" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-28" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">30 days from the eSIM&#x27;s issue date to install and scan the QR code onto your device. After that window, the eSIM becomes invalid.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(29)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">How do I check my remaining balance and data usage?</span>
+              <svg id="faq-chevron-29" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-29" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">Your Flex balance and current package&#x27;s data usage are visible in the RoamFi app at any time, with no need to contact support.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(30)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">Does my Flex balance expire if I don&#x27;t use it?</span>
+              <svg id="faq-chevron-30" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-30" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">No, Flex balance has no expiration date and never expires. This differs from Fix plans, which are tied to a specific trip duration.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-y-6">
+        <span class="font-bold text-[24px]">7. eSIM Basics</span>
+        <div class="flex flex-col gap-y-3">
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(31)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">How is eSIM different from regular carrier roaming?</span>
+              <svg id="faq-chevron-31" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-31" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">An eSIM is a built-in chip that remotely downloads a carrier profile — no physical SIM card, and no roaming charges from your home carrier. Switching carriers or countries happens in your phone&#x27;s settings, not at a store or carrier counter.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(32)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">Do I need identity verification (KYC) to use RoamFi?</span>
+              <svg id="faq-chevron-32" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-32" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">No, registration only requires an email address and confirmation code — no document upload. This is a lower barrier to entry than services that require passport details for a physical SIM card.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-y-6">
+        <span class="font-bold text-[24px]">8. RF Bonus</span>
+        <div class="flex flex-col gap-y-3">
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(33)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">What is RF Bonus?</span>
+              <svg id="faq-chevron-33" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-33" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">RF Bonus is RoamFi&#x27;s reward token, earned on purchases and referrals — like a loyalty program, except instead of points that expire inside the app, you get an asset with real market value that can be exchanged.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(34)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">How do I earn RF Bonus?</span>
+              <svg id="faq-chevron-34" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-34" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">RF Bonus is credited automatically on every eSIM data purchase and when you refer new users. There&#x27;s nothing separate to apply for or request — it lands on your balance on its own.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(35)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">Is RF Bonus the same as a Revenue Sharing Pool share?</span>
+              <svg id="faq-chevron-35" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-35" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">No, these are two separate mechanisms. The Revenue Sharing Pool is a share of the company&#x27;s net margin, split among recent buyers by time window. RF Bonus is a separate reward for the purchase or referral itself, unrelated to other users&#x27; pool distributions.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(36)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">What can I do with RF Bonus?</span>
+              <svg id="faq-chevron-36" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-36" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">You can convert RF Bonus to your USD balance with a +20% conversion bonus, or withdraw it to a crypto wallet for external trading — it&#x27;s not locked to a single store. Inside the app itself, RF Bonus isn&#x27;t spent directly: converting it to your USD balance is how it gets used.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(37)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">How do I exchange RF Bonus for real money?</span>
+              <svg id="faq-chevron-37" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-37" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">Through the conversion feature in the RoamFi app: RF Bonus converts to your USD balance with a +20% bonus, and that USD balance can then be withdrawn as regular funds.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(38)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">Does RF Bonus expire if I don&#x27;t use it?</span>
+              <svg id="faq-chevron-38" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-38" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">No, unlike traditional loyalty points, RF Bonus has no expiration date. It stays on your balance until you choose to use or convert it.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(39)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">Do I need a crypto wallet to earn RF Bonus?</span>
+              <svg id="faq-chevron-39" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-39" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">No, RF Bonus is credited and held directly in your RoamFi app account. A separate external wallet isn&#x27;t required for basic earning and holding.</span>
+            </div>
+          </div>
+          <div class="rounded-[16px]" style="border:1px solid #4F596429;background:#fff">
+            <button onclick="toggleFaq(40)" class="w-full flex items-center justify-between text-left px-6 py-5">
+              <span class="font-bold text-[15px] pr-4">Where can I find the exact RF Bonus reward rules?</span>
+              <svg id="faq-chevron-40" class="size-4 text-font-tertiary shrink-0" style="transition:transform .2s"><use href="#common-dropdown"></use></svg>
+            </button>
+            <div id="faq-answer-40" class="px-6 pb-5" style="display:none">
+              <span class="text-[14px] text-font-secondary leading-[22px]">The full rules — exactly how much you earn per purchase and per referral — are published on a dedicated page: roamfi.net/reward/rule. This FAQ only covers the general mechanics.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
   <!-- ============ FOOTER ============ -->
   <footer class="mt-auto bg-primary py-20">
     <div style="max-width:1536px;margin:0 auto;padding:0 32px;">
@@ -1061,7 +1802,9 @@
     var hash = location.hash.replace('#', '');
     if (hash === 'revenue-sharing') {
       showPage('revenue-sharing');
-    } else if (hash === 'destinations' || hash === 'faq') {
+    } else if (hash === 'faq') {
+      showPage('faq');
+    } else if (hash === 'destinations') {
       showPage('home', hash);
     }
   });
@@ -1075,6 +1818,14 @@
       document.querySelectorAll('#sim-revenue .sim-btn').forEach(x => x.classList.remove('active'));
       b.classList.add('active');
     }));
+
+    function toggleFaq(id) {
+      var ans = document.getElementById('faq-answer-' + id);
+      var chev = document.getElementById('faq-chevron-' + id);
+      var open = ans.style.display !== 'none';
+      ans.style.display = open ? 'none' : '';
+      chev.style.transform = open ? '' : 'rotate(180deg)';
+    }
 
     function goToCheckout(country) {
       document.getElementById('co-coverage').textContent = country;
